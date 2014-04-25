@@ -48,6 +48,8 @@ namespace RLCTelemetry.Stream.UDP
         private float position = 0;
         public float Position { get { return this.position; } }
 
+        // While loop manager
+        public bool Running = true;
 
         public UDPStream(IPAddress server, int port, MainWindow parent)
         {
@@ -158,19 +160,18 @@ namespace RLCTelemetry.Stream.UDP
             this.ipAddress = server;
 
 
-            bool done = false;
             UdpClient listener = new UdpClient(this.listenPort);
             IPEndPoint groupEP = new IPEndPoint(this.ipAddress, this.listenPort);
             byte[] data;
             try
             {
                 // To close this thread off, done must return true at some point.
-                while (!done)
+                while (Running)
                 {
 
-                    Console.WriteLine("Waiting for game to broadcast...");
+                    //Console.WriteLine("Waiting for game to broadcast...");
                     data = listener.Receive(ref groupEP);
-                    Console.WriteLine("Received a broadcast from {0}", groupEP.ToString());
+                    //Console.WriteLine("Received a broadcast from {0}", groupEP.ToString());
 
                     // 66 keys in a packet. 0 - 65.
                     int keys = 65;
