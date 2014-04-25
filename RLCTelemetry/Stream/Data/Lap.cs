@@ -13,14 +13,13 @@ namespace F1Data.Data
     public class Lap
     {
 
-        public int LapTime;
-        public int LapNumber;
-        public int Sector1;
-        public int Sector2;
-        public int Position;
-        public int TopSpeed;
-        public int CurrentFuel;
-        //self.packets = list()
+        public float LapTime;
+        public float LapNumber;
+        public float Sector1;
+        public float Sector2;
+        public float CurrentFuel;
+        public float PreviousLapTime;
+        
         public Lap()
         {
             // Just give these all a value until changed.
@@ -28,8 +27,6 @@ namespace F1Data.Data
             this.LapNumber = 0;
             this.Sector1 = 0;
             this.Sector2 = 0;
-            this.Position = 1;
-            this.TopSpeed = 1;
             this.CurrentFuel = 0;
         }
     }

@@ -10,11 +10,12 @@ namespace RLCTelemetry.Controls
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Windows.Forms;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class UITabs
+    public class UITabs : TabControl
     {
     }
 }

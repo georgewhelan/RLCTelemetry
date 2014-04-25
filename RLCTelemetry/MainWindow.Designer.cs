@@ -32,16 +32,35 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.instructionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.instructionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.authenticationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usingOtherAppsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.authenticatingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.streamingToTheWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previousLapsGroup = new System.Windows.Forms.GroupBox();
+            this.previousLaps = new System.Windows.Forms.ListBox();
+            this.sessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.lastLapLabel = new System.Windows.Forms.Label();
+            this.lastLapTime = new System.Windows.Forms.Label();
+            this.topSpeedLabel = new System.Windows.Forms.Label();
+            this.topSpeed = new System.Windows.Forms.Label();
+            this.streamControlButton = new System.Windows.Forms.Button();
+            this.statusBarStreamingLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.previousLapsGroup.SuspendLayout();
+            this.sessionGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -52,7 +71,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(334, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -69,11 +88,11 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.instructionsToolStripMenuItem,
             this.websiteToolStripMenuItem,
             this.applicationToolStripMenuItem,
             this.forwardingToolStripMenuItem});
@@ -81,14 +100,10 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.helpToolStripMenuItem.Text = "Settings";
             // 
-            // instructionsToolStripMenuItem
-            // 
-            this.instructionsToolStripMenuItem.Name = "instructionsToolStripMenuItem";
-            this.instructionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.instructionsToolStripMenuItem.Text = "Instructions";
-            // 
             // websiteToolStripMenuItem
             // 
+            this.websiteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.authenticationToolStripMenuItem});
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
             this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.websiteToolStripMenuItem.Text = "Website";
@@ -116,11 +131,27 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.aboutToolStripMenuItem.Text = "Help";
             // 
+            // instructionsToolStripMenuItem1
+            // 
+            this.instructionsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingUpToolStripMenuItem,
+            this.usingOtherAppsToolStripMenuItem,
+            this.authenticatingToolStripMenuItem,
+            this.streamingToTheWebsiteToolStripMenuItem});
+            this.instructionsToolStripMenuItem1.Name = "instructionsToolStripMenuItem1";
+            this.instructionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.instructionsToolStripMenuItem1.Text = "Instructions";
+            // 
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
             this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.helpToolStripMenuItem1.Text = "Help";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // aboutToolStripMenuItem1
             // 
@@ -128,28 +159,160 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
-            // toolStripSeparator1
+            // panel1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.panel1.Controls.Add(this.sessionGroupBox);
+            this.panel1.Controls.Add(this.previousLapsGroup);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(334, 360);
+            this.panel1.TabIndex = 1;
             // 
-            // instructionsToolStripMenuItem1
+            // statusStrip1
             // 
-            this.instructionsToolStripMenuItem1.Name = "instructionsToolStripMenuItem1";
-            this.instructionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.instructionsToolStripMenuItem1.Text = "Instructions";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBarStreamingLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 390);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(334, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // authenticationToolStripMenuItem
+            // 
+            this.authenticationToolStripMenuItem.Name = "authenticationToolStripMenuItem";
+            this.authenticationToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.authenticationToolStripMenuItem.Text = "Authentication";
+            // 
+            // settingUpToolStripMenuItem
+            // 
+            this.settingUpToolStripMenuItem.Name = "settingUpToolStripMenuItem";
+            this.settingUpToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.settingUpToolStripMenuItem.Text = "Setting up";
+            // 
+            // usingOtherAppsToolStripMenuItem
+            // 
+            this.usingOtherAppsToolStripMenuItem.Name = "usingOtherAppsToolStripMenuItem";
+            this.usingOtherAppsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.usingOtherAppsToolStripMenuItem.Text = "Using other apps";
+            // 
+            // authenticatingToolStripMenuItem
+            // 
+            this.authenticatingToolStripMenuItem.Name = "authenticatingToolStripMenuItem";
+            this.authenticatingToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.authenticatingToolStripMenuItem.Text = "Authenticating";
+            // 
+            // streamingToTheWebsiteToolStripMenuItem
+            // 
+            this.streamingToTheWebsiteToolStripMenuItem.Name = "streamingToTheWebsiteToolStripMenuItem";
+            this.streamingToTheWebsiteToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.streamingToTheWebsiteToolStripMenuItem.Text = "Streaming to the website";
+            // 
+            // previousLapsGroup
+            // 
+            this.previousLapsGroup.Controls.Add(this.previousLaps);
+            this.previousLapsGroup.Location = new System.Drawing.Point(3, 152);
+            this.previousLapsGroup.Name = "previousLapsGroup";
+            this.previousLapsGroup.Size = new System.Drawing.Size(328, 205);
+            this.previousLapsGroup.TabIndex = 0;
+            this.previousLapsGroup.TabStop = false;
+            this.previousLapsGroup.Text = "Previous Laps";
+            // 
+            // previousLaps
+            // 
+            this.previousLaps.FormattingEnabled = true;
+            this.previousLaps.Location = new System.Drawing.Point(7, 20);
+            this.previousLaps.Name = "previousLaps";
+            this.previousLaps.Size = new System.Drawing.Size(312, 173);
+            this.previousLaps.TabIndex = 0;
+            // 
+            // sessionGroupBox
+            // 
+            this.sessionGroupBox.Controls.Add(this.streamControlButton);
+            this.sessionGroupBox.Controls.Add(this.topSpeed);
+            this.sessionGroupBox.Controls.Add(this.topSpeedLabel);
+            this.sessionGroupBox.Controls.Add(this.lastLapTime);
+            this.sessionGroupBox.Controls.Add(this.lastLapLabel);
+            this.sessionGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.sessionGroupBox.Name = "sessionGroupBox";
+            this.sessionGroupBox.Size = new System.Drawing.Size(328, 143);
+            this.sessionGroupBox.TabIndex = 1;
+            this.sessionGroupBox.TabStop = false;
+            this.sessionGroupBox.Text = "Session Statistics";
+            // 
+            // lastLapLabel
+            // 
+            this.lastLapLabel.AutoSize = true;
+            this.lastLapLabel.Location = new System.Drawing.Point(25, 20);
+            this.lastLapLabel.Name = "lastLapLabel";
+            this.lastLapLabel.Size = new System.Drawing.Size(51, 13);
+            this.lastLapLabel.TabIndex = 0;
+            this.lastLapLabel.Text = "Last Lap:";
+            // 
+            // lastLapTime
+            // 
+            this.lastLapTime.AutoSize = true;
+            this.lastLapTime.Location = new System.Drawing.Point(163, 20);
+            this.lastLapTime.Name = "lastLapTime";
+            this.lastLapTime.Size = new System.Drawing.Size(49, 13);
+            this.lastLapTime.TabIndex = 1;
+            this.lastLapTime.Text = "0:00.000";
+            // 
+            // topSpeedLabel
+            // 
+            this.topSpeedLabel.AutoSize = true;
+            this.topSpeedLabel.Location = new System.Drawing.Point(13, 37);
+            this.topSpeedLabel.Name = "topSpeedLabel";
+            this.topSpeedLabel.Size = new System.Drawing.Size(63, 13);
+            this.topSpeedLabel.TabIndex = 2;
+            this.topSpeedLabel.Text = "Top Speed:";
+            // 
+            // topSpeed
+            // 
+            this.topSpeed.AutoSize = true;
+            this.topSpeed.Location = new System.Drawing.Point(163, 37);
+            this.topSpeed.Name = "topSpeed";
+            this.topSpeed.Size = new System.Drawing.Size(25, 13);
+            this.topSpeed.TabIndex = 3;
+            this.topSpeed.Text = "000";
+            // 
+            // streamControlButton
+            // 
+            this.streamControlButton.Location = new System.Drawing.Point(16, 98);
+            this.streamControlButton.Name = "streamControlButton";
+            this.streamControlButton.Size = new System.Drawing.Size(75, 23);
+            this.streamControlButton.TabIndex = 4;
+            this.streamControlButton.Text = "Start";
+            this.streamControlButton.UseVisualStyleBackColor = true;
+            this.streamControlButton.Click += new System.EventHandler(this.streamControlButton_Click);
+            // 
+            // statusBarStreamingLabel
+            // 
+            this.statusBarStreamingLabel.Name = "statusBarStreamingLabel";
+            this.statusBarStreamingLabel.Size = new System.Drawing.Size(83, 17);
+            this.statusBarStreamingLabel.Text = "Not streaming";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(334, 412);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
+            this.ShowIcon = false;
             this.Text = "MainWindow";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.previousLapsGroup.ResumeLayout(false);
+            this.sessionGroupBox.ResumeLayout(false);
+            this.sessionGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,7 +324,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem instructionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forwardingToolStripMenuItem;
@@ -170,5 +332,21 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem instructionsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem authenticationToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripMenuItem settingUpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usingOtherAppsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem authenticatingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem streamingToTheWebsiteToolStripMenuItem;
+        private System.Windows.Forms.GroupBox sessionGroupBox;
+        private System.Windows.Forms.Label topSpeed;
+        private System.Windows.Forms.Label topSpeedLabel;
+        private System.Windows.Forms.Label lastLapTime;
+        private System.Windows.Forms.Label lastLapLabel;
+        private System.Windows.Forms.GroupBox previousLapsGroup;
+        private System.Windows.Forms.ListBox previousLaps;
+        private System.Windows.Forms.Button streamControlButton;
+        private System.Windows.Forms.ToolStripStatusLabel statusBarStreamingLabel;
     }
 }

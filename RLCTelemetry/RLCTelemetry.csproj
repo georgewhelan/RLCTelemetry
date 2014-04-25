@@ -49,7 +49,9 @@
     <Compile Include="Controls\UIButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\UITabs.cs" />
+    <Compile Include="Controls\UITabs.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GUI\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +79,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stream\Data\Lap.cs" />
+    <Compile Include="Stream\Data\Session.cs" />
+    <Compile Include="Stream\Data\TopSpeed.cs" />
     <Compile Include="Stream\UDP\UDPStream.cs" />
     <EmbeddedResource Include="GUI\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -102,7 +106,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
