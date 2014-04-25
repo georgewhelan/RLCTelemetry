@@ -49,15 +49,17 @@ namespace RLCTelemetry.Stream.UDP
         public float Position { get { return this.position; } }
 
         // While loop manager
-        public bool Running = true;
+        public bool Running = false;
 
         public UDPStream(IPAddress server, int port, MainWindow parent)
         {
             this.parent = parent;
+            this.listenPort = port;
+            this.ipAddress = server;
 
             Console.WriteLine("thissing" + parent.ToString());
             
-            this.Stream(server, port);
+            //this.Start(server, port);
 
             
 
@@ -154,19 +156,23 @@ namespace RLCTelemetry.Stream.UDP
             //66'new_field_1303']
         }
 
-        public void Stream(IPAddress server, int port)
+        public void Stop()
         {
-            this.listenPort = port;
-            this.ipAddress = server;
+            Console.WriteLine("Off");
+            this.Running = false;
+        }
 
+        public void Start()
+        {
+            this.Running = true;
 
             UdpClient listener = new UdpClient(this.listenPort);
             IPEndPoint groupEP = new IPEndPoint(this.ipAddress, this.listenPort);
             byte[] data;
             try
             {
-                // To close this thread off, done must return true at some point.
-                while (Running)
+                // To close this thread off, done must return false at some point.
+                while (this.Running)
                 {
 
                     //Console.WriteLine("Waiting for game to broadcast...");

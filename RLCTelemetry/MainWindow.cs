@@ -22,6 +22,13 @@ namespace RLCTelemetry
         {
             InitializeComponent();
             this.Show();
+
+            int port = 20777;
+            IPAddress address = new IPAddress(new byte[] { 127, 0, 0, 1 });
+            this.stream = new UDPStream(address, port, this);
+
+            this.data = new Thread(new ThreadStart(this.StreamStart));
+            this.data.Start();
         }
 
         private void StreamStart()
@@ -31,12 +38,15 @@ namespace RLCTelemetry
             // UDPStream stream = new UDPStream(config.LocalServer, config.LocalPort);
 
             // Testing purposes only. Read from config in future.
-            int port = 20777;
-            IPAddress address = new IPAddress(new byte[] { 127, 0, 0, 1 });
-
-            this.stream = new UDPStream(address, port, this);
 
             //this.topSpeed.Text = this.Session.TopSpeed.ToInt();
+
+            this.stream.Start();
+            
+
+            
+            
+
 
             //Session session = new Session();
             
@@ -55,17 +65,16 @@ namespace RLCTelemetry
             if (this.streamControlButton.Text == "Start")
             {
 
-                this.data = new Thread(new ThreadStart(this.StreamStart));
-                this.data.Start();
+                //this.stream.Running = true;
+                
                 this.streamControlButton.Text = "Stop";
                 this.statusBarStreamingLabel.Text = "Streaming...";
             }
             else
             {
                 this.streamControlButton.Text = "Stopped";
-                this.stream.Running = false;
+                this.stream.Stop();
                 this.statusBarStreamingLabel.Text = "Stopped streaming";
-                this.data.Join();
             }
         }
 
