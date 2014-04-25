@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace RLCTelemetry
+namespace RLCTelemetry.GUI
 {
-    public partial class Form1 : Form
+    public partial class Settings : Form
     {
-        public Form1()
+        public Settings()
         {
             InitializeComponent();
         }
