@@ -22,7 +22,7 @@ namespace RLCTelemetry.Stream.Data
         
         public Lap()
         {
-            // Just give these all a value until changed.
+            // Just give these all a value at the start until changed.
             this.LapTime = 0;
             this.LapNumber = 0;
             this.Sector1 = 0;

@@ -22,6 +22,12 @@ namespace RLCTelemetry.Stream.Data
         // Current position
         public int Position;
 
+        // The current lap in this session.
+        public Lap CurrentLap = new Lap();
+
+        // The previous lap, this gets added to the list of laps.
+        public Lap PreviousLap = new Lap();
+
         // The session Top Speed.
         private TopSpeed topspeed = new TopSpeed();
         
@@ -37,13 +43,17 @@ namespace RLCTelemetry.Stream.Data
 
             //this.topspeed.Parse(stream.Speed);
 
-            Console.WriteLine(this.TopSpeed);
 
             //stream.Handle.
 
             
 
 
+        }
+
+        public void UpdateTopSpeed(float speed)
+        {
+            this.topspeed.Parse(speed);
         }
 
         private void updatesessionvalues(Session session)

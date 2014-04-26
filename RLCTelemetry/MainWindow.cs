@@ -90,5 +90,8 @@ namespace RLCTelemetry
             AboutBox about = new AboutBox();
             about.Show();
         }
+
+
+        // this.Closing or something, make the data control bool false here so it shuts the thread off when closing this form.
     }
 }

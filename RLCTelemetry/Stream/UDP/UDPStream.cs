@@ -200,6 +200,8 @@ namespace RLCTelemetry.Stream.UDP
 
                         }
 
+                        this.session.UpdateTopSpeed(stream[7]);
+
                         this.previouslaptime = stream[62];
                         this.speed = stream[7];
 
@@ -208,7 +210,6 @@ namespace RLCTelemetry.Stream.UDP
                         this.time = stream[0];
 
 
-<<<<<<< HEAD
                     //this.currentlap.LapNumber = stream[59];
                     //this.currentlap.LapTime = stream[1];
                     //this.position = stream[39];
@@ -216,20 +217,6 @@ namespace RLCTelemetry.Stream.UDP
                     //this.currentlap.Sector2 = stream[51];
                     //this.currentlap.CurrentFuel = stream[45];
                     //this.currentlap.Speed = stream[7];
-=======
-                        this.parent.UpdateTopSpeedLabel(this.speed.ToString());
->>>>>>> c4065e4b8b1b6d0472a91694fde2b643ce57d98f
-
-                        //this.currentlap.LapNumber = stream[59];
-                        //this.currentlap.LapTime = stream[1];
-                        //this.position = stream[39];
-                        //this.currentlap.Sector1 = 1;
-                        //this.currentlap.Sector2 = 1;
-                        //this.currentlap.CurrentFuel = stream[45];
-                        //this.currentlap.Speed = stream[7];
-
-
-
                     }
                 }
             }
