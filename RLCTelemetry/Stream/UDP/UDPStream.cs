@@ -10,15 +10,19 @@ namespace RLCTelemetry.Stream.UDP
     using System.Net;
     using System.Collections.Generic;
     using System.Net.Sockets;
-    using F1Data.Data;
     using System.Windows.Forms;
+    using RLCTelemetry.Stream.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class UDPStream
     {
+        // Handle on the parent window so it can update it.
         private MainWindow parent;
+
+        // Handle on the session so it can update the session's values.
+        private Session session;
 
         // Need to open a config file, read the port. Not this.
         private int listenPort;
@@ -158,12 +162,14 @@ namespace RLCTelemetry.Stream.UDP
 
         public void Stop()
         {
+            // So this doesn't work. No idea why.
             Console.WriteLine("Off");
             this.Running = false;
         }
 
-        public void Start()
+        public void Start(Session session)
         {
+            this.session = session;
             this.Running = true;
 
             UdpClient listener = new UdpClient(this.listenPort);
@@ -205,8 +211,8 @@ namespace RLCTelemetry.Stream.UDP
                     //this.currentlap.LapNumber = stream[59];
                     //this.currentlap.LapTime = stream[1];
                     //this.position = stream[39];
-                    //this.currentlap.Sector1 = 1;
-                    //this.currentlap.Sector2 = 1;
+                    //this.currentlap.Sector1 = stream[50];
+                    //this.currentlap.Sector2 = stream[51];
                     //this.currentlap.CurrentFuel = stream[45];
                     //this.currentlap.Speed = stream[7];
 

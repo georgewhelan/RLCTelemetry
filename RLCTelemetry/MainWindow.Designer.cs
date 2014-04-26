@@ -33,34 +33,37 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.authenticationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.instructionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.authenticationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usingOtherAppsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.authenticatingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.streamingToTheWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.sessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.streamControlButton = new System.Windows.Forms.Button();
+            this.topSpeed = new System.Windows.Forms.Label();
+            this.topSpeedLabel = new System.Windows.Forms.Label();
+            this.lastLapTime = new System.Windows.Forms.Label();
+            this.lastLapLabel = new System.Windows.Forms.Label();
             this.previousLapsGroup = new System.Windows.Forms.GroupBox();
             this.previousLaps = new System.Windows.Forms.ListBox();
-            this.sessionGroupBox = new System.Windows.Forms.GroupBox();
-            this.lastLapLabel = new System.Windows.Forms.Label();
-            this.lastLapTime = new System.Windows.Forms.Label();
-            this.topSpeedLabel = new System.Windows.Forms.Label();
-            this.topSpeed = new System.Windows.Forms.Label();
-            this.streamControlButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusBarStreamingLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.localisationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kPHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.previousLapsGroup.SuspendLayout();
             this.sessionGroupBox.SuspendLayout();
+            this.previousLapsGroup.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -95,7 +98,8 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.websiteToolStripMenuItem,
             this.applicationToolStripMenuItem,
-            this.forwardingToolStripMenuItem});
+            this.forwardingToolStripMenuItem,
+            this.localisationToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.helpToolStripMenuItem.Text = "Settings";
@@ -107,6 +111,12 @@
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
             this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.websiteToolStripMenuItem.Text = "Website";
+            // 
+            // authenticationToolStripMenuItem
+            // 
+            this.authenticationToolStripMenuItem.Name = "authenticationToolStripMenuItem";
+            this.authenticationToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.authenticationToolStripMenuItem.Text = "Authentication";
             // 
             // applicationToolStripMenuItem
             // 
@@ -142,48 +152,6 @@
             this.instructionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.instructionsToolStripMenuItem1.Text = "Instructions";
             // 
-            // helpToolStripMenuItem1
-            // 
-            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.helpToolStripMenuItem1.Text = "Help";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // aboutToolStripMenuItem1
-            // 
-            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem1.Text = "About";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.sessionGroupBox);
-            this.panel1.Controls.Add(this.previousLapsGroup);
-            this.panel1.Location = new System.Drawing.Point(0, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(334, 360);
-            this.panel1.TabIndex = 1;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusBarStreamingLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 390);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(334, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // authenticationToolStripMenuItem
-            // 
-            this.authenticationToolStripMenuItem.Name = "authenticationToolStripMenuItem";
-            this.authenticationToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.authenticationToolStripMenuItem.Text = "Authentication";
-            // 
             // settingUpToolStripMenuItem
             // 
             this.settingUpToolStripMenuItem.Name = "settingUpToolStripMenuItem";
@@ -208,6 +176,93 @@
             this.streamingToTheWebsiteToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.streamingToTheWebsiteToolStripMenuItem.Text = "Streaming to the website";
             // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Text = "Help";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.sessionGroupBox);
+            this.panel1.Controls.Add(this.previousLapsGroup);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(334, 360);
+            this.panel1.TabIndex = 1;
+            // 
+            // sessionGroupBox
+            // 
+            this.sessionGroupBox.Controls.Add(this.streamControlButton);
+            this.sessionGroupBox.Controls.Add(this.topSpeed);
+            this.sessionGroupBox.Controls.Add(this.topSpeedLabel);
+            this.sessionGroupBox.Controls.Add(this.lastLapTime);
+            this.sessionGroupBox.Controls.Add(this.lastLapLabel);
+            this.sessionGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.sessionGroupBox.Name = "sessionGroupBox";
+            this.sessionGroupBox.Size = new System.Drawing.Size(328, 143);
+            this.sessionGroupBox.TabIndex = 1;
+            this.sessionGroupBox.TabStop = false;
+            this.sessionGroupBox.Text = "Session Statistics";
+            // 
+            // streamControlButton
+            // 
+            this.streamControlButton.Location = new System.Drawing.Point(16, 98);
+            this.streamControlButton.Name = "streamControlButton";
+            this.streamControlButton.Size = new System.Drawing.Size(75, 23);
+            this.streamControlButton.TabIndex = 4;
+            this.streamControlButton.Text = "Start";
+            this.streamControlButton.UseVisualStyleBackColor = true;
+            this.streamControlButton.Click += new System.EventHandler(this.streamControlButton_Click);
+            // 
+            // topSpeed
+            // 
+            this.topSpeed.AutoSize = true;
+            this.topSpeed.Location = new System.Drawing.Point(163, 37);
+            this.topSpeed.Name = "topSpeed";
+            this.topSpeed.Size = new System.Drawing.Size(25, 13);
+            this.topSpeed.TabIndex = 3;
+            this.topSpeed.Text = "000";
+            // 
+            // topSpeedLabel
+            // 
+            this.topSpeedLabel.AutoSize = true;
+            this.topSpeedLabel.Location = new System.Drawing.Point(13, 37);
+            this.topSpeedLabel.Name = "topSpeedLabel";
+            this.topSpeedLabel.Size = new System.Drawing.Size(63, 13);
+            this.topSpeedLabel.TabIndex = 2;
+            this.topSpeedLabel.Text = "Top Speed:";
+            // 
+            // lastLapTime
+            // 
+            this.lastLapTime.AutoSize = true;
+            this.lastLapTime.Location = new System.Drawing.Point(163, 20);
+            this.lastLapTime.Name = "lastLapTime";
+            this.lastLapTime.Size = new System.Drawing.Size(49, 13);
+            this.lastLapTime.TabIndex = 1;
+            this.lastLapTime.Text = "0:00.000";
+            // 
+            // lastLapLabel
+            // 
+            this.lastLapLabel.AutoSize = true;
+            this.lastLapLabel.Location = new System.Drawing.Point(25, 20);
+            this.lastLapLabel.Name = "lastLapLabel";
+            this.lastLapLabel.Size = new System.Drawing.Size(51, 13);
+            this.lastLapLabel.TabIndex = 0;
+            this.lastLapLabel.Text = "Last Lap:";
+            // 
             // previousLapsGroup
             // 
             this.previousLapsGroup.Controls.Add(this.previousLaps);
@@ -226,71 +281,42 @@
             this.previousLaps.Size = new System.Drawing.Size(312, 173);
             this.previousLaps.TabIndex = 0;
             // 
-            // sessionGroupBox
+            // statusStrip1
             // 
-            this.sessionGroupBox.Controls.Add(this.streamControlButton);
-            this.sessionGroupBox.Controls.Add(this.topSpeed);
-            this.sessionGroupBox.Controls.Add(this.topSpeedLabel);
-            this.sessionGroupBox.Controls.Add(this.lastLapTime);
-            this.sessionGroupBox.Controls.Add(this.lastLapLabel);
-            this.sessionGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.sessionGroupBox.Name = "sessionGroupBox";
-            this.sessionGroupBox.Size = new System.Drawing.Size(328, 143);
-            this.sessionGroupBox.TabIndex = 1;
-            this.sessionGroupBox.TabStop = false;
-            this.sessionGroupBox.Text = "Session Statistics";
-            // 
-            // lastLapLabel
-            // 
-            this.lastLapLabel.AutoSize = true;
-            this.lastLapLabel.Location = new System.Drawing.Point(25, 20);
-            this.lastLapLabel.Name = "lastLapLabel";
-            this.lastLapLabel.Size = new System.Drawing.Size(51, 13);
-            this.lastLapLabel.TabIndex = 0;
-            this.lastLapLabel.Text = "Last Lap:";
-            // 
-            // lastLapTime
-            // 
-            this.lastLapTime.AutoSize = true;
-            this.lastLapTime.Location = new System.Drawing.Point(163, 20);
-            this.lastLapTime.Name = "lastLapTime";
-            this.lastLapTime.Size = new System.Drawing.Size(49, 13);
-            this.lastLapTime.TabIndex = 1;
-            this.lastLapTime.Text = "0:00.000";
-            // 
-            // topSpeedLabel
-            // 
-            this.topSpeedLabel.AutoSize = true;
-            this.topSpeedLabel.Location = new System.Drawing.Point(13, 37);
-            this.topSpeedLabel.Name = "topSpeedLabel";
-            this.topSpeedLabel.Size = new System.Drawing.Size(63, 13);
-            this.topSpeedLabel.TabIndex = 2;
-            this.topSpeedLabel.Text = "Top Speed:";
-            // 
-            // topSpeed
-            // 
-            this.topSpeed.AutoSize = true;
-            this.topSpeed.Location = new System.Drawing.Point(163, 37);
-            this.topSpeed.Name = "topSpeed";
-            this.topSpeed.Size = new System.Drawing.Size(25, 13);
-            this.topSpeed.TabIndex = 3;
-            this.topSpeed.Text = "000";
-            // 
-            // streamControlButton
-            // 
-            this.streamControlButton.Location = new System.Drawing.Point(16, 98);
-            this.streamControlButton.Name = "streamControlButton";
-            this.streamControlButton.Size = new System.Drawing.Size(75, 23);
-            this.streamControlButton.TabIndex = 4;
-            this.streamControlButton.Text = "Start";
-            this.streamControlButton.UseVisualStyleBackColor = true;
-            this.streamControlButton.Click += new System.EventHandler(this.streamControlButton_Click);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBarStreamingLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 390);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(334, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // statusBarStreamingLabel
             // 
             this.statusBarStreamingLabel.Name = "statusBarStreamingLabel";
             this.statusBarStreamingLabel.Size = new System.Drawing.Size(83, 17);
             this.statusBarStreamingLabel.Text = "Not streaming";
+            // 
+            // localisationToolStripMenuItem
+            // 
+            this.localisationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mPHToolStripMenuItem,
+            this.kPHToolStripMenuItem});
+            this.localisationToolStripMenuItem.Name = "localisationToolStripMenuItem";
+            this.localisationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.localisationToolStripMenuItem.Text = "Localisation";
+            // 
+            // mPHToolStripMenuItem
+            // 
+            this.mPHToolStripMenuItem.Name = "mPHToolStripMenuItem";
+            this.mPHToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mPHToolStripMenuItem.Text = "MPH";
+            // 
+            // kPHToolStripMenuItem
+            // 
+            this.kPHToolStripMenuItem.Name = "kPHToolStripMenuItem";
+            this.kPHToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kPHToolStripMenuItem.Text = "k/ph";
             // 
             // MainWindow
             // 
@@ -308,11 +334,11 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.previousLapsGroup.ResumeLayout(false);
             this.sessionGroupBox.ResumeLayout(false);
             this.sessionGroupBox.PerformLayout();
+            this.previousLapsGroup.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,5 +374,8 @@
         private System.Windows.Forms.ListBox previousLaps;
         private System.Windows.Forms.Button streamControlButton;
         private System.Windows.Forms.ToolStripStatusLabel statusBarStreamingLabel;
+        private System.Windows.Forms.ToolStripMenuItem localisationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPHToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kPHToolStripMenuItem;
     }
 }

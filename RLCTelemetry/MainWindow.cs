@@ -10,6 +10,7 @@ using System.Net;
 using RLCTelemetry.Stream.UDP;
 using System.Threading;
 using RLCTelemetry.Stream.Data;
+using RLCTelemetry.GUI;
 
 namespace RLCTelemetry
 {
@@ -41,14 +42,12 @@ namespace RLCTelemetry
 
             //this.topSpeed.Text = this.Session.TopSpeed.ToInt();
 
-            this.stream.Start();
+            // When start is pushed, we get a new session.
+            Session session = new Session();
             
-
+            this.stream.Start(session);
             
             
-
-
-            //Session session = new Session();
             
             //session.CurrentLap = stream.CurrentLap;
         }
@@ -64,9 +63,6 @@ namespace RLCTelemetry
         {
             if (this.streamControlButton.Text == "Start")
             {
-
-                //this.stream.Running = true;
-                
                 this.streamControlButton.Text = "Stop";
                 this.statusBarStreamingLabel.Text = "Streaming...";
             }
@@ -74,6 +70,7 @@ namespace RLCTelemetry
             {
                 this.streamControlButton.Text = "Stopped";
                 this.stream.Stop();
+                // Do a final session UI update here.
                 this.statusBarStreamingLabel.Text = "Stopped streaming";
             }
         }
@@ -82,9 +79,16 @@ namespace RLCTelemetry
         {
             BeginInvoke((MethodInvoker)delegate
             {
+                // Obviously top speed right now is just... speed.
                 this.topSpeed.Text = topspeed;
             });  
             
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AboutBox about = new AboutBox();
+            about.Show();
         }
     }
 }
