@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace F1Data.Data
+namespace RLCTelemetry.Stream.Data
 {
 
     /// <summary>

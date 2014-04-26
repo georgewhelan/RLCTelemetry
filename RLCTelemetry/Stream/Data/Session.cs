@@ -8,7 +8,6 @@ namespace RLCTelemetry.Stream.Data
 {
     using System;
     using System.Collections.Generic;
-    using F1Data.Data;
     using RLCTelemetry.Stream.UDP;
     
 
