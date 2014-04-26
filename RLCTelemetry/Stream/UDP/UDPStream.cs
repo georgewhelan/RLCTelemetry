@@ -174,45 +174,47 @@ namespace RLCTelemetry.Stream.UDP
                 // To close this thread off, done must return false at some point.
                 while (this.Running)
                 {
-
-                    //Console.WriteLine("Waiting for game to broadcast...");
-                    data = listener.Receive(ref groupEP);
-                    //Console.WriteLine("Received a broadcast from {0}", groupEP.ToString());
-
-                    // 66 keys in a packet. 0 - 65.
-                    int keys = 65;
-
-                    for (int index = 0; index < keys; index++)
+                    // Check to see if there is data on the stream
+                    if (listener.Available > 0)
                     {
-                        // Making those 4 bytes into a float.
-                        float value = System.BitConverter.ToSingle(data, index * 4);
+                        // and pull it in
+                        data = listener.Receive(ref groupEP);
+                        //Console.WriteLine("Received a broadcast from {0}", groupEP.ToString());
 
-                        // Log it.
-                        this.stream[index] = value;
+                        // 66 keys in a packet. 0 - 65.
+                        int keys = 65;
+
+                        for (int index = 0; index < keys; index++)
+                        {
+                            // Making those 4 bytes into a float.
+                            float value = System.BitConverter.ToSingle(data, index * 4);
+
+                            // Log it.
+                            this.stream[index] = value;
+
+                        }
+
+                        this.previouslaptime = stream[62];
+                        this.speed = stream[7];
+
+                        Console.WriteLine(this.Speed);
+
+                        this.time = stream[0];
+
+
+                        this.parent.UpdateTopSpeedLabel(this.speed.ToString());
+
+                        //this.currentlap.LapNumber = stream[59];
+                        //this.currentlap.LapTime = stream[1];
+                        //this.position = stream[39];
+                        //this.currentlap.Sector1 = 1;
+                        //this.currentlap.Sector2 = 1;
+                        //this.currentlap.CurrentFuel = stream[45];
+                        //this.currentlap.Speed = stream[7];
+
+
 
                     }
-
-                    this.previouslaptime = stream[62];
-                    this.speed = stream[7];
-
-                    Console.WriteLine(this.Speed);
-
-                    this.time = stream[0];
-
-
-                    this.parent.UpdateTopSpeedLabel(this.speed.ToString());
-
-                    //this.currentlap.LapNumber = stream[59];
-                    //this.currentlap.LapTime = stream[1];
-                    //this.position = stream[39];
-                    //this.currentlap.Sector1 = 1;
-                    //this.currentlap.Sector2 = 1;
-                    //this.currentlap.CurrentFuel = stream[45];
-                    //this.currentlap.Speed = stream[7];
-
-
-
-
                 }
             }
             catch (Exception er)
