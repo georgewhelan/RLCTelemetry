@@ -82,6 +82,8 @@
     <Compile Include="Stream\Data\Session.cs" />
     <Compile Include="Stream\Data\TopSpeed.cs" />
     <Compile Include="Stream\UDP\UDPStream.cs" />
+    <Compile Include="Utilities\Factories\LapFactory.cs" />
+    <Compile Include="Utilities\MilisecondConverter.cs" />
     <EmbeddedResource Include="GUI\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,9 +109,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

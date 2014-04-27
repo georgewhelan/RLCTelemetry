@@ -33,8 +33,14 @@ namespace RLCTelemetry.Stream.Data
         
         public int TopSpeed { get { return this.topspeed.ToInt(); } }
 
-        public Session()
+        private MainWindow parent;
+
+        public Session(MainWindow parent)
         {
+            this.parent = parent;
+
+
+
             // Make connection with website.
             // Get a session ID.
 
@@ -51,13 +57,15 @@ namespace RLCTelemetry.Stream.Data
 
         }
 
-        public void UpdateTopSpeed(float speed)
+        public void UpdateTopSpeed(float speed, int lap)
         {
-            this.topspeed.Parse(speed);
+            this.topspeed.Parse(speed, lap);
         }
 
-        private void updatesessionvalues(Session session)
+        private void updatesessionvalues()
         {
+            this.parent.UpdateTopSpeedLabel(this.topspeed.ToString());
+
             //;this.Handle.topSpeed.Text = session.TopSpeed.ToString()
         }
 

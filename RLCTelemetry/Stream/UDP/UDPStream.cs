@@ -12,6 +12,7 @@ namespace RLCTelemetry.Stream.UDP
     using System.Net.Sockets;
     using System.Windows.Forms;
     using RLCTelemetry.Stream.Data;
+    using RLCTelemetry.Utilities.Factories;
 
     /// <summary>
     /// TODO: Update summary.
@@ -39,7 +40,7 @@ namespace RLCTelemetry.Stream.UDP
         private float laptime = 0;
         public float LapTime { get { return this.laptime; } }
 
-        private Lap currentlap = new Lap();
+        private Lap currentlap;
         public Lap CurrentLap { get { return this.currentlap; } }
         //public float CurrentLap { get { return this.currentlap; }}
 
@@ -55,13 +56,31 @@ namespace RLCTelemetry.Stream.UDP
         // While loop manager
         public bool Running = false;
 
+        // The internal lap counter.
+        private int lapcount = 15;
+
+        private List<bool> sectors = new List<bool>();
+
+
+        private bool sector1flag = false;
+        private bool sector2flag = false;
+
+        private float sector1 = 0;
+        private float sector2 = 0;
+        private float sector3 = 0;
+
         public UDPStream(IPAddress server, int port, MainWindow parent)
         {
             this.parent = parent;
             this.listenPort = port;
             this.ipAddress = server;
 
-            Console.WriteLine("thissing" + parent.ToString());
+            this.sectors.Add(false);
+            this.sectors.Add(false);
+            this.sectors.Add(false);
+
+
+            //Console.WriteLine("thissing" + parent.ToString());
             
             //this.Start(server, port);
 
@@ -200,14 +219,99 @@ namespace RLCTelemetry.Stream.UDP
 
                         }
 
-                        this.session.UpdateTopSpeed(stream[7]);
+                        // When we have logged it, bearing in mind this stream is 60 hertz, make a new lap. First lap will be Lap number 1. So in a loop for lapnumber <= total laps
+                        // we need to make a new lap every time the lap number changes, all the while logging the data like sector etc for the lap as it goes. When lap number changes, add that lap
+                        // to the list of Laps. And make a new lap. Rinse repeat. I think that's how to do it.
 
-                        this.previouslaptime = stream[62];
-                        this.speed = stream[7];
 
-                        Console.WriteLine(this.Speed);
+                        // Make a new lap when start. Then make a new lap every time lap number changes.
+                        // When making a lap, it needs the lap number.
+                        // If Sector 1 changes from 0: update the lap record.
+                        // ^^ for sector 2.
 
-                        this.time = stream[0];
+
+                        if (this.stream[36] == this.lapcount)
+                        {
+                            // on this lap yo.
+
+                            // Sector 1 has changed.
+                            if (this.stream[49] != 0)
+                            {
+                                if (this.sector1flag == false)
+                                {
+                                    this.sector1 = this.stream[49];
+                                    this.sector1flag = true;
+                                    this.currentlap.Sector1 = this.sector1;
+                                    this.Sector(1, this.sector1);
+                                }
+                                
+                                //this.Sector(1, this.stream[49]);
+                            }
+
+                            if (this.stream[50] != 0)
+                            {
+                                if (this.sector2flag == false)
+                                {
+                                    this.sector2 = this.stream[50];
+                                    this.sector2flag = true;
+                                    this.currentlap.Sector2 = this.sector2;
+                                    this.Sector(2, this.sector2);
+                                }
+                                //this.Sector(2, this.stream[50]);
+                            }
+                        }
+
+                        if (this.stream[36] != this.lapcount)
+                        {
+                            // Crossed the line yo.
+
+                            this.sector3 = stream[62] - (this.sector1 + this.sector2);
+                            this.currentlap.Sector3 = this.sector3;
+                            this.currentlap.LapTime = this.stream[62];
+
+
+
+                            this.Sector(3, this.sector3);
+                            Console.WriteLine("Previous lap: " + stream[62]);
+
+                            this.session.Laps.Add(this.currentlap);
+                            this.currentlap = new Lap();
+
+                            
+                            this.sectors[0] = false;
+                            this.sectors[1] = false;
+                            this.sectors[2] = false;
+
+                            this.sector1flag = false;
+                            this.sector2flag = false;
+
+
+
+                            this.lapcount += 1;
+
+                            // Add final values for the lap here.
+                                
+                            //this.currentlap.CurrentFuel = stream[45];
+
+                        }
+                        
+
+                        
+
+
+                       
+                        //this.currentlap.LapNumber = stream[37];
+                        //this.currentlap.
+
+                        //this.session.UpdateTopSpeed(stream[7], (int)stream[37]);
+                        //this.session.CurrentLap =
+
+                        //this.previouslaptime = stream[62];
+                        //this.speed = stream[7];
+
+                        //Console.WriteLine(this.Speed);
+
+                        //this.time = stream[0];
 
 
                     //this.currentlap.LapNumber = stream[59];
@@ -215,7 +319,6 @@ namespace RLCTelemetry.Stream.UDP
                     //this.position = stream[39];
                     //this.currentlap.Sector1 = stream[50];
                     //this.currentlap.Sector2 = stream[51];
-                    //this.currentlap.CurrentFuel = stream[45];
                     //this.currentlap.Speed = stream[7];
                     }
                 }
@@ -225,6 +328,16 @@ namespace RLCTelemetry.Stream.UDP
                 Console.WriteLine(er.ToString());
             }
             listener.Close();
+        }
+
+        private void Sector(int sector, float value)
+        {
+            if (this.sectors[sector - 1] == false)
+            {
+                Console.WriteLine("Sector " + sector + ": " + value.ToString());
+                this.sectors[sector - 1] = true;
+            }
+
         }
     }
      

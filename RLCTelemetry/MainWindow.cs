@@ -43,7 +43,8 @@ namespace RLCTelemetry
             //this.topSpeed.Text = this.Session.TopSpeed.ToInt();
 
             // When start is pushed, we get a new session.
-            Session session = new Session();
+            Session session = new Session(this);
+            // Session needs to ask RLC.com for a session ID etc here.
             
             this.stream.Start(session);
             
