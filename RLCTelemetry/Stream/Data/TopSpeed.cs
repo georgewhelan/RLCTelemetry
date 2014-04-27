@@ -17,12 +17,17 @@ namespace RLCTelemetry.Stream.Data
     public class TopSpeed
     {
         private float speed = 0;
+        public float Speed { get { return this.speed; } }
 
-        public void Parse(float newspeed)
+        private int lap = 0;
+        public int Lap { get { return this.lap; } }
+
+        public void Parse(float newspeed, int lap)
         {
             if (this.speed < newspeed)
             {
                 this.speed = newspeed;
+                this.lap = lap;
             }
         }
 
