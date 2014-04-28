@@ -13,6 +13,7 @@ namespace RLCTelemetry.Stream.UDP
     using System.Windows.Forms;
     using RLCTelemetry.Stream.Data;
     using RLCTelemetry.Utilities.Factories;
+    using RLCTelemetry.Utilities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -230,13 +231,14 @@ namespace RLCTelemetry.Stream.UDP
 
                             // Laptime should be the same as the three sectors.
                             this.currentlap.LapTime = this.stream[62];
+                            this.currentlap.LapTimeString = TimeFormatter.FormatFloat(this.stream[62]);
 
 
                             // Bit of console logging.
                             this.Sector(3, this.sector3);
                             Console.WriteLine("Previous lap: " + stream[62]);
 
-                            this.session.UpdateLastLapTime(stream[62]);
+                            this.session.UpdateLastLapTime(this.currentlap.LapTimeString);
 
 
                             this.currentlap.LapNumber = this.lapcount + 1;

@@ -9,6 +9,7 @@ namespace RLCTelemetry.Stream.Data
     using System;
     using System.Collections.Generic;
     using RLCTelemetry.Stream.UDP;
+    using RLCTelemetry.Utilities;
     
 
     public class Session
@@ -62,17 +63,19 @@ namespace RLCTelemetry.Stream.Data
 
         public void UpdateLastLapTime(float time)
         {
-            this.parent.UpdateLastLapLabel(time.ToString());
+            string stime = TimeFormatter.FormatFloat(time);
+            this.parent.UpdateLastLapLabel(stime);
         }
 
-        private void updatelastlaptime(float time)
+        public void UpdateLastLapTime(string time)
         {
-            this.parent.UpdateLastLapLabel(time.ToString());
+            this.parent.UpdateLastLapLabel(time);
         }
 
         private void updatetopspeedvalue()
         {
-            this.parent.UpdateTopSpeedLabel(this.topspeed.Speed.ToString());
+
+            this.parent.UpdateTopSpeedLabel(this.topspeed.ToString());
 
         }
 
@@ -86,9 +89,9 @@ namespace RLCTelemetry.Stream.Data
             float sec1 = lap.Sector1;
             float sec2 = lap.Sector2;
             float sec3 = lap.Sector3;
-            float time = lap.LapTime;
+            string time = lap.LapTimeString;
 
-            string result = "Lap " + num + ": S1 " + sec1 + " S2 " + sec2 + " S3 " + sec3 + " Total: " + time;
+            string result = "Lap " + num + ": Time:" + time;
 
 
             this.parent.AddLapToPreviousLaps(result);

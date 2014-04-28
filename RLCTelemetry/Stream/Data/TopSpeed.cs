@@ -37,5 +37,10 @@ namespace RLCTelemetry.Stream.Data
             // So hacky.
             return (int)this.speed;
         }
+
+        public override string ToString()
+        {
+            return this.speed.ToString();
+        }
     }
 }

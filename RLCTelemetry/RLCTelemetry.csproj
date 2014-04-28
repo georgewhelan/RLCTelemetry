@@ -89,7 +89,7 @@
     <Compile Include="Stream\Http\WebsiteStream.cs" />
     <Compile Include="Stream\UDP\UDPStream.cs" />
     <Compile Include="Utilities\Factories\LapFactory.cs" />
-    <Compile Include="Utilities\MilisecondConverter.cs" />
+    <Compile Include="Utilities\TimeFormatter.cs" />
     <EmbeddedResource Include="GUI\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>

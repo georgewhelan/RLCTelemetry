@@ -21,6 +21,7 @@ namespace RLCTelemetry.Stream.Data
         public float CurrentFuel;
         public float PreviousLapTime;
         public float RacePosition;
+        public string LapTimeString;
         
         public Lap()
         {
@@ -32,6 +33,7 @@ namespace RLCTelemetry.Stream.Data
             this.Sector3 = 0;
             this.CurrentFuel = 0;
             this.RacePosition = 1;
+            this.LapTimeString = "";
         }
     }
 }
