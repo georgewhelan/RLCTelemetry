@@ -34,30 +34,14 @@ namespace RLCTelemetry.Stream.UDP
         private Dictionary<int, string> keys = new Dictionary<int, string>();
 
         //// Public fields must be read only.
-        //private float time = 0;
-        //public float Time { get { return this.time; } }
-
-        //private float laptime = 0;
-        //public float LapTime { get { return this.laptime; } }
-
         private Lap currentlap = new Lap();
         public Lap CurrentLap { get { return this.currentlap; } }
-        //public float CurrentLap { get { return this.currentlap; }}
-
-        //private float speed = 0;
-        //public float Speed { get { return this.speed; } }
-
-        //private float previouslaptime = 0;
-        //public float PreviousLapTime { get { return this.previouslaptime; } }
-
-        //private float position = 0;
-        //public float Position { get { return this.position; } }
 
         // While loop manager
         public bool Running = false;
 
         // The internal lap counter. RESET TO ZERO THIS BETTER BE ZERO.
-        private int lapcount = 8;
+        private int lapcount = 14;
 
         private List<bool> sectors = new List<bool>();
 
@@ -251,6 +235,8 @@ namespace RLCTelemetry.Stream.UDP
                             // Bit of console logging.
                             this.Sector(3, this.sector3);
                             Console.WriteLine("Previous lap: " + stream[62]);
+
+                            this.session.UpdateLastLapTime(stream[62]);
 
 
                             this.currentlap.LapNumber = this.lapcount + 1;

@@ -50,13 +50,6 @@ namespace RLCTelemetry.Stream.Data
             }
         }
 
-        private void updatetopspeedvalue()
-        {
-            this.parent.UpdateTopSpeedLabel(this.topspeed.ToInt().ToString());
-
-            //;this.Handle.topSpeed.Text = session.TopSpeed.ToString()
-        }
-
         public void AddLap(Lap lap)
         {
             // This method updates the list of laps. It is called when the lap is finished, and can add a lap to the list.
@@ -66,6 +59,24 @@ namespace RLCTelemetry.Stream.Data
 
             this.updatelaps(lap);
         }
+
+        public void UpdateLastLapTime(float time)
+        {
+            this.parent.UpdateLastLapLabel(time.ToString());
+        }
+
+        private void updatelastlaptime(float time)
+        {
+            this.parent.UpdateLastLapLabel(time.ToString());
+        }
+
+        private void updatetopspeedvalue()
+        {
+            this.parent.UpdateTopSpeedLabel(this.topspeed.Speed.ToString());
+
+        }
+
+        
 
         private void updatelaps(Lap lap)
         {
@@ -77,7 +88,7 @@ namespace RLCTelemetry.Stream.Data
             float sec3 = lap.Sector3;
             float time = lap.LapTime;
 
-            string result = num + ": " + sec1 + " " + sec2 + " " + sec3 + " " + time;
+            string result = "Lap " + num + ": S1 " + sec1 + " S2 " + sec2 + " S3 " + sec3 + " Total: " + time;
 
 
             this.parent.AddLapToPreviousLaps(result);

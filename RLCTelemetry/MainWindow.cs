@@ -28,8 +28,7 @@ namespace RLCTelemetry
             IPAddress address = new IPAddress(new byte[] { 127, 0, 0, 1 });
             this.stream = new UDPStream(address, port, this);
 
-            this.data = new Thread(new ThreadStart(this.StreamStart));
-            this.data.Start();
+            
             
         }
 
@@ -59,6 +58,8 @@ namespace RLCTelemetry
         {
             if (this.streamControlButton.Text == "Start")
             {
+                this.data = new Thread(new ThreadStart(this.StreamStart));
+                this.data.Start();
                 this.streamControlButton.Text = "Stop";
                 this.statusBarStreamingLabel.Text = "Streaming...";
             }
@@ -75,10 +76,17 @@ namespace RLCTelemetry
         {
             BeginInvoke((MethodInvoker)delegate
             {
-                // Obviously top speed right now is just... speed.
                 this.topSpeed.Text = topspeed;
             });  
             
+        }
+
+        public void UpdateLastLapLabel(string time)
+        {
+            BeginInvoke((MethodInvoker)delegate
+            {
+                this.lastLapTime.Text = time;
+            });  
         }
 
         public void AddLapToPreviousLaps(string lap)
