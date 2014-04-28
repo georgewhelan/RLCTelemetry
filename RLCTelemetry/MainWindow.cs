@@ -11,6 +11,7 @@ using RLCTelemetry.Stream.UDP;
 using System.Threading;
 using RLCTelemetry.Stream.Data;
 using RLCTelemetry.GUI;
+using RLCTelemetry.Settings.Localisation;
 
 namespace RLCTelemetry
 {
@@ -18,6 +19,10 @@ namespace RLCTelemetry
     {
         private Thread data;
         private UDPStream stream;
+
+        // The localisation for speed units.
+        private Speed speedunits = Speed.MPH;
+        public Speed SpeedUnits { get { return this.speedunits; } }
         
         public MainWindow()
         {
@@ -67,7 +72,6 @@ namespace RLCTelemetry
             {
                 this.streamControlButton.Text = "Stopped";
                 this.stream.Stop();
-                // Do a final session UI update here.
                 this.statusBarStreamingLabel.Text = "Stopped streaming";
             }
         }
@@ -101,6 +105,22 @@ namespace RLCTelemetry
         {
             AboutBox about = new AboutBox();
             about.Show();
+        }
+
+        private void mPHToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.mPHToolStripMenuItem.Checked = true;
+            this.kPHToolStripMenuItem.Checked = false;
+            this.speedunits = Speed.MPH;
+            this.speedunitslabel.Text = "MPH";
+        }
+
+        private void kPHToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.mPHToolStripMenuItem.Checked = false;
+            this.kPHToolStripMenuItem.Checked = true;
+            this.speedunits = Speed.KPH;
+            this.speedunitslabel.Text = "k/ph";
         }
 
 

@@ -83,6 +83,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\Localisation\Localisation.cs" />
+    <Compile Include="Settings\Localisation\Speed.cs" />
     <Compile Include="Stream\Data\Lap.cs" />
     <Compile Include="Stream\Data\Session.cs" />
     <Compile Include="Stream\Data\TopSpeed.cs" />

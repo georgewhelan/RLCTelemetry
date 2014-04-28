@@ -10,6 +10,7 @@ namespace RLCTelemetry.Stream.Data
     using System.Collections.Generic;
     using RLCTelemetry.Stream.UDP;
     using RLCTelemetry.Utilities;
+    using RLCTelemetry.Settings.Localisation;
     
 
     public class Session
@@ -74,9 +75,14 @@ namespace RLCTelemetry.Stream.Data
 
         private void updatetopspeedvalue()
         {
-
-            this.parent.UpdateTopSpeedLabel(this.topspeed.ToString());
-
+            if (this.parent.SpeedUnits == Speed.MPH)
+            {
+                this.parent.UpdateTopSpeedLabel(Localisation.ToMPH(this.topspeed.Speed).ToString());
+            }
+            else if (this.parent.SpeedUnits == Speed.KPH)
+            {
+                this.parent.UpdateTopSpeedLabel(Localisation.ToKPH(this.topspeed.Speed).ToString());
+            }
         }
 
         
