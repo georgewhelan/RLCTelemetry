@@ -28,6 +28,7 @@ namespace RLCTelemetry.Stream.Data
             {
                 this.speed = newspeed;
                 this.lap = lap;
+                Console.WriteLine("Top speed updated");
             }
         }
 

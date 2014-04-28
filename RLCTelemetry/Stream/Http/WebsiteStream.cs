@@ -15,12 +15,12 @@ namespace RLCTelemetry.Stream.Http
     public class WebsiteStream
     {
 
-        public void WebsiteStream()
-        {
-            HttpClient stream = new HttpClient();
+        //public void WebsiteStream()
+        //{
+        //    HttpClient stream = new HttpClient();
 
             
 
-        }
+        //}
     }
 }

@@ -33,31 +33,31 @@ namespace RLCTelemetry.Stream.UDP
         private Dictionary<int, float> stream = new Dictionary<int, float>();
         private Dictionary<int, string> keys = new Dictionary<int, string>();
 
-        // Public fields must be read only.
-        private float time = 0;
-        public float Time { get { return this.time; } }
+        //// Public fields must be read only.
+        //private float time = 0;
+        //public float Time { get { return this.time; } }
 
-        private float laptime = 0;
-        public float LapTime { get { return this.laptime; } }
+        //private float laptime = 0;
+        //public float LapTime { get { return this.laptime; } }
 
-        private Lap currentlap;
+        private Lap currentlap = new Lap();
         public Lap CurrentLap { get { return this.currentlap; } }
         //public float CurrentLap { get { return this.currentlap; }}
 
-        private float speed = 0;
-        public float Speed { get { return this.speed; } }
+        //private float speed = 0;
+        //public float Speed { get { return this.speed; } }
 
-        private float previouslaptime = 0;
-        public float PreviousLapTime { get { return this.previouslaptime; } }
+        //private float previouslaptime = 0;
+        //public float PreviousLapTime { get { return this.previouslaptime; } }
 
-        private float position = 0;
-        public float Position { get { return this.position; } }
+        //private float position = 0;
+        //public float Position { get { return this.position; } }
 
         // While loop manager
         public bool Running = false;
 
-        // The internal lap counter.
-        private int lapcount = 15;
+        // The internal lap counter. RESET TO ZERO THIS BETTER BE ZERO.
+        private int lapcount = 8;
 
         private List<bool> sectors = new List<bool>();
 
@@ -79,36 +79,6 @@ namespace RLCTelemetry.Stream.UDP
             this.sectors.Add(false);
             this.sectors.Add(false);
 
-
-            //Console.WriteLine("thissing" + parent.ToString());
-            
-            //this.Start(server, port);
-
-            
-
-
-            // IM NOT SURE WHY I DID THIS.
-            this.keys[1] = "time";
-            this.keys[2] = "lapTime";
-            this.keys[3] = "lapDistance";
-            this.keys[4] = "distance";
-            this.keys[5] = "x";
-            this.keys[6] = "y";
-            this.keys[7] = "z";
-            this.keys[8] = "speed";
-            this.keys[9] = "worldSpeedX";
-            this.keys[10] = "worldSpeedY";
-            this.keys[11] = "worldSpeedZ";
-            this.keys[12] = "xr";
-            this.keys[13] = "roll";
-            this.keys[14] = "zr";
-            this.keys[15] = "xd";
-            this.keys[16] = "pitch";
-            this.keys[17] = "zd";
-            this.keys[18] = "suspensionPositionRearLeft";
-            this.keys[19] = "suspensionPositionRearRight";
-            this.keys[20] = "suspensionPositionFrontLeft";
-            this.keys[21] = "suspensionPositionFrontRight";
 
             //keys = [
             //1'time', 
@@ -181,7 +151,6 @@ namespace RLCTelemetry.Stream.UDP
 
         public void Stop()
         {
-            // So this doesn't work. No idea why.
             Console.WriteLine("Off");
             this.Running = false;
         }
@@ -191,12 +160,14 @@ namespace RLCTelemetry.Stream.UDP
             this.session = session;
             this.Running = true;
 
+            Console.WriteLine("Running");
+
             UdpClient listener = new UdpClient(this.listenPort);
             IPEndPoint groupEP = new IPEndPoint(this.ipAddress, this.listenPort);
             byte[] data;
             try
             {
-                // To close this thread off, done must return false at some point.
+                // To close this thread off, this.Running must return false at some point.
                 while (this.Running)
                 {
                     // Check to see if there is data on the stream
@@ -234,6 +205,10 @@ namespace RLCTelemetry.Stream.UDP
                         {
                             // on this lap yo.
 
+                            // Top speed section.
+                            this.session.UpdateTopSpeed(this.stream[7], this.lapcount + 1);
+
+
                             // Sector 1 has changed.
                             if (this.stream[49] != 0)
                             {
@@ -263,35 +238,42 @@ namespace RLCTelemetry.Stream.UDP
 
                         if (this.stream[36] != this.lapcount)
                         {
-                            // Crossed the line yo.
+                            // Crossed the finish line, new lap started.
 
+                            // The previous lap, minus the sector 1 + sector 2 time = sector 3.
                             this.sector3 = stream[62] - (this.sector1 + this.sector2);
                             this.currentlap.Sector3 = this.sector3;
+
+                            // Laptime should be the same as the three sectors.
                             this.currentlap.LapTime = this.stream[62];
 
 
-
+                            // Bit of console logging.
                             this.Sector(3, this.sector3);
                             Console.WriteLine("Previous lap: " + stream[62]);
 
-                            this.session.Laps.Add(this.currentlap);
-                            this.currentlap = new Lap();
 
-                            
+                            this.currentlap.LapNumber = this.lapcount + 1;
+
+                            // Add final values for the lap here.
+                            //this.currentlap.CurrentFuel = stream[45];
+
+                            // Add the completed lap to the list of laps in the session.
+                            //this.session.Laps.Add(this.currentlap);
+                            //this.session.UpdateLaps();
+                            this.session.AddLap(this.currentlap);
+
+                            // Reset the currentlap to a brand new lap.
+                            this.currentlap = new Lap();
                             this.sectors[0] = false;
                             this.sectors[1] = false;
                             this.sectors[2] = false;
-
                             this.sector1flag = false;
                             this.sector2flag = false;
 
-
-
+                            // Update the lapcount by 1.
                             this.lapcount += 1;
 
-                            // Add final values for the lap here.
-                                
-                            //this.currentlap.CurrentFuel = stream[45];
 
                         }
                         

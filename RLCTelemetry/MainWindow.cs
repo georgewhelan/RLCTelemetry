@@ -30,27 +30,22 @@ namespace RLCTelemetry
 
             this.data = new Thread(new ThreadStart(this.StreamStart));
             this.data.Start();
+            
         }
 
         private void StreamStart()
         {
-            // Check config for settings
+            // Check config for settings. Example:
             // Configuration config = new Configuration();
             // UDPStream stream = new UDPStream(config.LocalServer, config.LocalPort);
 
-            // Testing purposes only. Read from config in future.
-
-            //this.topSpeed.Text = this.Session.TopSpeed.ToInt();
 
             // When start is pushed, we get a new session.
             Session session = new Session(this);
-            // Session needs to ask RLC.com for a session ID etc here.
+            // Not sure why, having the data start here it means we can close the app before starting streaming.
             
             this.stream.Start(session);
             
-            
-            
-            //session.CurrentLap = stream.CurrentLap;
         }
 
        
@@ -84,6 +79,14 @@ namespace RLCTelemetry
                 this.topSpeed.Text = topspeed;
             });  
             
+        }
+
+        public void AddLapToPreviousLaps(string lap)
+        {
+            BeginInvoke((MethodInvoker)delegate
+            {
+                this.previousLaps.Items.Add(lap);
+            });
         }
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
