@@ -75,13 +75,15 @@ namespace RLCTelemetry.Stream.Data
 
         private void updatetopspeedvalue()
         {
-            if (this.parent.SpeedUnits == Speed.MPH)
+            switch(this.parent.SpeedUnits)
             {
-                this.parent.UpdateTopSpeedLabel(Localisation.ToMPH(this.topspeed.Speed).ToString());
-            }
-            else if (this.parent.SpeedUnits == Speed.KPH)
-            {
-                this.parent.UpdateTopSpeedLabel(Localisation.ToKPH(this.topspeed.Speed).ToString());
+                case Speed.MPH:
+                    this.parent.UpdateTopSpeedLabel(Localisation.ToMPH(this.topspeed.Speed).ToString());
+                    break;
+
+                case Speed.KPH:
+                    this.parent.UpdateTopSpeedLabel(Localisation.ToKPH(this.topspeed.Speed).ToString());
+                    break;
             }
         }
 
