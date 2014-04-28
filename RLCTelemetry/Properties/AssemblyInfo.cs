@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RLCTelemetry")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Racing League Charts Telemetry Application")]
+[assembly: AssemblyDescription("The application to gather telemetry data from PC driving games as you play.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RLCTelemetry")]
+[assembly: AssemblyCompany("RLC")]
+[assembly: AssemblyProduct("RLC Telemetry App")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
