@@ -32,7 +32,7 @@ namespace RLCTelemetry.Stream.UDP
 
         // The 4 byte floats are sent here.
         private Dictionary<int, float> stream = new Dictionary<int, float>();
-        private Dictionary<int, string> keys = new Dictionary<int, string>();
+        private Dictionary<string, int> keys = new Dictionary<string, int>();
 
         //// Public fields must be read only.
         private Lap currentlap = new Lap();
@@ -46,10 +46,11 @@ namespace RLCTelemetry.Stream.UDP
 
         private List<bool> sectors = new List<bool>();
 
-
+        // Used so the app isn't updating the sectors 60/sec.
         private bool sector1flag = false;
         private bool sector2flag = false;
 
+        // The sector times.
         private float sector1 = 0;
         private float sector2 = 0;
         private float sector3 = 0;
@@ -64,74 +65,74 @@ namespace RLCTelemetry.Stream.UDP
             this.sectors.Add(false);
             this.sectors.Add(false);
 
+            keys.Add("time", 0);
+            keys.Add("lap_time", 1);
+            keys.Add("lap_distance", 2);
+            keys.Add("distance", 3);
+            keys.Add("x", 4);
+            keys.Add("y", 5);
+            keys.Add("z", 6);
+            keys.Add("speed", 7);
+            keys.Add("world_speed_x", 8);
+            keys.Add("world_speed_y", 9);
+            keys.Add("world_speed_z", 10);
+            keys.Add("xr", 11);
+            keys.Add("roll", 12);
+            keys.Add("zr", 13);
+            keys.Add("xd", 14);
+            keys.Add("pitch", 15);
+            keys.Add("zd", 16);
+            keys.Add("suspension_position_rear_left", 17);
+            keys.Add("suspension_position_rear_right", 18);
+            keys.Add("suspension_position_front_left", 19);
+            keys.Add("suspension_position_front_right", 20);
+            keys.Add("suspension_velocity_rear_left", 21);
+            keys.Add("suspension_velocity_rear_right", 22);
+            keys.Add("suspension_velocity_front_left", 23);
+            keys.Add("suspension_velocity_front_right", 24);
+            keys.Add("wheel_speed_back_left", 25);
+            keys.Add("wheel_speed_back_right", 26);
+            keys.Add("wheel_speed_front_left", 27);
+            keys.Add("wheel_speed_front_right", 28);
+            keys.Add("throttle", 29);
+            keys.Add("steer", 30);
+            keys.Add("brake", 31);
+            keys.Add("clutch", 32);
+            keys.Add("gear", 33);
+            keys.Add("lateral_acceleration", 34);
+            keys.Add("longitudinal_acceleration", 35);
+            keys.Add("lap_no", 36);
+            keys.Add("engine_revs", 37);
+            keys.Add("new_field1", 38);
+            keys.Add("race_position", 39);
+            keys.Add("kers_remaining", 40);
+            keys.Add("kers_recharge", 41);
+            keys.Add("drs_status", 42);
+            keys.Add("difficulty", 43);
+            keys.Add("assists", 44);
+            keys.Add("fuel_remaining", 45);
+            keys.Add("session_type", 46);
+            keys.Add("new_field10", 47);
+            keys.Add("sector", 48);
+            keys.Add("time_sector1", 49);
+            keys.Add("time_sector2", 50);
+            keys.Add("brake_temperature_rear_left", 51);
+            keys.Add("brake_temperature_rear_right", 52);
+            keys.Add("brake_temperature_front_left", 53);
+            keys.Add("brake_temperature_front_right", 54);
+            // I'm guessing brake pressure or something.
+            keys.Add("new_field18", 55);
+            keys.Add("new_field19", 56);
+            keys.Add("new_field20", 57);
+            keys.Add("new_field21", 58);
+            keys.Add("completed_laps_in_race", 59);
+            keys.Add("total_laps_in_race", 60);
+            keys.Add("track_length", 61);
+            keys.Add("previous_lap_time", 62);
+            keys.Add("new_field_1301", 63);
+            keys.Add("new_field_1302", 64);
+            keys.Add("new_field_1303", 65);
 
-            //keys = [
-            //1'time', 
-            //2'lap_time', 
-            //3'lap_distance',
-            //4//'distance', 
-            //5'x',
-            //6'y',
-            //7'z',
-            //8//'speed', 
-            //9'world_speed_x', 
-            //10'world_speed_y', 
-            //11'world_speed_z',
-            //12//'xr',
-            //13'roll',
-            //14'zr',
-            //15'xd',
-            //16'pitch', 
-            //17'zd',
-            //18//'suspension_position_rear_left',
-            //19//'suspension_position_rear_right',
-            //20//'suspension_position_front_left',
-            //21//'suspension_position_front_right',
-            //22//'suspension_velocity_rear_left',
-            //23//'suspension_velocity_rear_right',
-            //24//'suspension_velocity_front_left',
-            //25//'suspension_velocity_front_right',
-            //26//'wheel_speed_back_left',
-            //27'wheel_speed_back_right',
-            //28//'wheel_speed_front_left',
-            //29'wheel_speed_front_right',
-            //30//'throttle', 
-            //31'steer',
-            //32'brake', 
-            //33'clutch', 
-            //34'gear',
-            //35//'lateral_acceleration',
-            //36'longitudinal_acceleration',
-            //37//'lap_no',
-            //38'engine_revs', 
-            //39'new_field1',
-            //40//'race_position', 
-            //41'kers_remaining', 
-            //42'kers_recharge', 
-            //43'drs_status',
-            //44//'difficulty',
-            //45'assists', 
-            //46'fuel_remaining',
-            //47//'session_type', 
-            //48'new_field10', 
-            //49'sector',
-            //50'time_sector1',
-            //51'time_sector2',
-            //52//'brake_temperature_rear_left',
-            //53'brake_temperature_rear_right',
-            //54//'brake_temperature_front_left',
-            //55'brake_temperature_front_right',
-            //56//'new_field18',
-            //57'new_field19',
-            //58'new_field20', 
-            //59'new_field21',
-            //60//'completed_laps_in_race',
-            //61'total_laps_in_race', 
-            //62'track_length', 
-            //63'previous_lap_time',
-            //64//'new_field_1301', 
-            //65'new_field_1302',
-            //66'new_field_1303']
         }
 
         public void Stop()
@@ -175,17 +176,6 @@ namespace RLCTelemetry.Stream.UDP
 
                         }
 
-                        // When we have logged it, bearing in mind this stream is 60 hertz, make a new lap. First lap will be Lap number 1. So in a loop for lapnumber <= total laps
-                        // we need to make a new lap every time the lap number changes, all the while logging the data like sector etc for the lap as it goes. When lap number changes, add that lap
-                        // to the list of Laps. And make a new lap. Rinse repeat. I think that's how to do it.
-
-
-                        // Make a new lap when start. Then make a new lap every time lap number changes.
-                        // When making a lap, it needs the lap number.
-                        // If Sector 1 changes from 0: update the lap record.
-                        // ^^ for sector 2.
-
-
                         if (this.stream[36] == this.lapcount)
                         {
                             // on this lap yo.
@@ -205,7 +195,6 @@ namespace RLCTelemetry.Stream.UDP
                                     this.Sector(1, this.sector1);
                                 }
                                 
-                                //this.Sector(1, this.stream[49]);
                             }
 
                             if (this.stream[50] != 0)
@@ -217,7 +206,6 @@ namespace RLCTelemetry.Stream.UDP
                                     this.currentlap.Sector2 = this.sector2;
                                     this.Sector(2, this.sector2);
                                 }
-                                //this.Sector(2, this.stream[50]);
                             }
                         }
 
@@ -247,8 +235,6 @@ namespace RLCTelemetry.Stream.UDP
                             //this.currentlap.CurrentFuel = stream[45];
 
                             // Add the completed lap to the list of laps in the session.
-                            //this.session.Laps.Add(this.currentlap);
-                            //this.session.UpdateLaps();
                             this.session.AddLap(this.currentlap);
 
                             // Reset the currentlap to a brand new lap.
@@ -264,32 +250,6 @@ namespace RLCTelemetry.Stream.UDP
 
 
                         }
-                        
-
-                        
-
-
-                       
-                        //this.currentlap.LapNumber = stream[37];
-                        //this.currentlap.
-
-                        //this.session.UpdateTopSpeed(stream[7], (int)stream[37]);
-                        //this.session.CurrentLap =
-
-                        //this.previouslaptime = stream[62];
-                        //this.speed = stream[7];
-
-                        //Console.WriteLine(this.Speed);
-
-                        //this.time = stream[0];
-
-
-                    //this.currentlap.LapNumber = stream[59];
-                    //this.currentlap.LapTime = stream[1];
-                    //this.position = stream[39];
-                    //this.currentlap.Sector1 = stream[50];
-                    //this.currentlap.Sector2 = stream[51];
-                    //this.currentlap.Speed = stream[7];
                     }
                 }
             }
