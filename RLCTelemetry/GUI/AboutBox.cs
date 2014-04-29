@@ -19,6 +19,8 @@ namespace RLCTelemetry.GUI
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
+
+            Console.WriteLine("[GUI] Opening About box");
         }
 
         #region Assembly Attribute Accessors
@@ -103,6 +105,7 @@ namespace RLCTelemetry.GUI
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("[GUI] Closing About box");
             this.Close();
         }
     }
