@@ -22,8 +22,6 @@ namespace RLCTelemetry.GUI
 
             this.config.ReadConfig();
             this.currentPortTextbox.Text = this.config.Port.ToString();
-
-
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -35,9 +33,13 @@ namespace RLCTelemetry.GUI
         private void resetButton_Click(object sender, EventArgs e)
         {
             // Reset config to 127.0.0.1 and 20777
-            config.Edit("port", "20777");
-            this.currentPortTextbox.Text = "20777";
-            Console.WriteLine("[Config] Resetting config to default");
+            if (this.config.Port != 20777)
+            {
+                config.Edit("port", "20777");
+                this.currentPortTextbox.Text = "20777";
+                Console.WriteLine("[Config] Resetting config to default");
+            }
+            this.portErrorLabel.Text = "";
         }
 
         private void saveButton_Click(object sender, EventArgs e)
