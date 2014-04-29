@@ -12,6 +12,7 @@ using System.Threading;
 using RLCTelemetry.Stream.Data;
 using RLCTelemetry.GUI;
 using RLCTelemetry.Settings.Localisation;
+using RLCTelemetry.Utilities.Configuration;
 
 namespace RLCTelemetry
 {
@@ -29,9 +30,26 @@ namespace RLCTelemetry
             InitializeComponent();
             this.Show();
 
-            int port = 20777;
-            IPAddress address = new IPAddress(new byte[] { 127, 0, 0, 1 });
-            this.stream = new UDPStream(address, port, this);
+            F12013Config config = new F12013Config();
+            config.ReadConfig();
+
+
+            if (config.Success == true)
+            {
+                this.stream = new UDPStream(config.Server, config.Port, this);
+            }
+            else
+            {
+                // Throw an error here, unable to succeed in reading the values from the config file.
+            }
+
+
+            //int port = 20777;
+
+            // Configuration check - edit if appropriate.
+
+            //IPAddress address = new IPAddress(new byte[] { 127, 0, 0, 1 });
+            //this.stream = new UDPStream(address, port, this);
 
             
             
@@ -39,11 +57,6 @@ namespace RLCTelemetry
 
         private void StreamStart()
         {
-            // Check config for settings. Example:
-            // Configuration config = new Configuration();
-            // UDPStream stream = new UDPStream(config.LocalServer, config.LocalPort);
-
-
             // When start is pushed, we get a new session.
             Session session = new Session(this);
             // Not sure why, having the data start here it means we can close the app before starting streaming.
@@ -120,7 +133,7 @@ namespace RLCTelemetry
             this.mPHToolStripMenuItem.Checked = false;
             this.kPHToolStripMenuItem.Checked = true;
             this.speedunits = Speed.KPH;
-            this.speedunitslabel.Text = "k/ph";
+            this.speedunitslabel.Text = "KPH";
         }
 
 

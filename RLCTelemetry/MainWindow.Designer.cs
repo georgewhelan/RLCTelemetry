@@ -159,7 +159,7 @@
             // 
             this.kPHToolStripMenuItem.Name = "kPHToolStripMenuItem";
             this.kPHToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
-            this.kPHToolStripMenuItem.Text = "k/ph";
+            this.kPHToolStripMenuItem.Text = "KPH";
             this.kPHToolStripMenuItem.Click += new System.EventHandler(this.kPHToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
@@ -375,7 +375,7 @@
             // driverhelmetpicture
             // 
 
-            // Image courtesy of: http://timelikeit.deviantart.com/art/Mclaren-F1-iCons-65916463
+            // Placeholder image courtesy of: http://timelikeit.deviantart.com/art/Mclaren-F1-iCons-65916463
             this.driverhelmetpicture.Image = global::RLCTelemetry.Properties.Resources._32x32;
             this.driverhelmetpicture.InitialImage = global::RLCTelemetry.Properties.Resources._32x32;
             this.driverhelmetpicture.Location = new System.Drawing.Point(177, 0);
