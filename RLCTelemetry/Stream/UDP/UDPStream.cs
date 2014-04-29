@@ -41,8 +41,8 @@ namespace RLCTelemetry.Stream.UDP
         // While loop manager
         public bool Running = false;
 
-        // The internal lap counter. RESET TO ZERO THIS BETTER BE ZERO.
-        private int lapcount = 14;
+        // The internal lap counter. RESET TO ZERO IF YOU CHANGE IT.
+        private int lapcount = 0;
 
         private List<bool> sectors = new List<bool>();
 
