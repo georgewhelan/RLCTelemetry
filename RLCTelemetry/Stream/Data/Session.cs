@@ -40,6 +40,7 @@ namespace RLCTelemetry.Stream.Data
         public Session(MainWindow parent)
         {
             this.parent = parent;
+            Console.WriteLine("[Session] Starting new session");
         }
 
         public void UpdateTopSpeed(float speed, int lap)

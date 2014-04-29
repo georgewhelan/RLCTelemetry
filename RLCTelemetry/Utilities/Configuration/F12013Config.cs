@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace RLCTelemetry.Utilities.Configuration
@@ -50,6 +49,7 @@ namespace RLCTelemetry.Utilities.Configuration
 
         public void ReadConfig()
         {
+            Console.WriteLine("[config] Checking config file");
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\My Games\FormulaOne2013\hardwaresettings\hardware_settings_config.xml";
 
             XElement allData = XElement.Load(path);
@@ -76,11 +76,13 @@ namespace RLCTelemetry.Utilities.Configuration
                             // We have a server and a port to work with.
                         {
                             this.Success = true;
+                            Console.WriteLine("[config] Config is fine to stream");
                         }
                     }
                     else
                     {
                         // Make the extra data attribute 3.
+                        Console.WriteLine("[config] Changing extra data value to 3");
                         this.Edit("extradata", "3");
                         this.ReadConfig();
                     }
@@ -88,6 +90,7 @@ namespace RLCTelemetry.Utilities.Configuration
                 else
                 {
                     // Config needs motion enabling.
+                    Console.WriteLine("[config] Changing motion value to true");
                     this.Edit("motion", "true");
 
                     // This might end up stuck in an endless loop if it can't write the file.
@@ -118,6 +121,7 @@ namespace RLCTelemetry.Utilities.Configuration
                 }
 
                 allData.Save(path);
+                Console.WriteLine("[config] Saved config file");
             }
 
         }

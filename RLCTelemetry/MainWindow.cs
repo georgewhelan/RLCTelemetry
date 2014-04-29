@@ -28,6 +28,7 @@ namespace RLCTelemetry
         public MainWindow()
         {
             InitializeComponent();
+            Console.WriteLine("[GUI] Showing main window");
             this.Show();
 
             F12013Config config = new F12013Config();
@@ -42,17 +43,6 @@ namespace RLCTelemetry
             {
                 // Throw an error here, unable to succeed in reading the values from the config file.
             }
-
-
-            //int port = 20777;
-
-            // Configuration check - edit if appropriate.
-
-            //IPAddress address = new IPAddress(new byte[] { 127, 0, 0, 1 });
-            //this.stream = new UDPStream(address, port, this);
-
-            
-            
         }
 
         private void StreamStart()
@@ -60,7 +50,6 @@ namespace RLCTelemetry
             // When start is pushed, we get a new session.
             Session session = new Session(this);
             // Not sure why, having the data start here it means we can close the app before starting streaming.
-            
             this.stream.Start(session);
             
         }

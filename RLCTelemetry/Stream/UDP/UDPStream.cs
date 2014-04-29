@@ -133,11 +133,13 @@ namespace RLCTelemetry.Stream.UDP
             keys.Add("new_field_1302", 64);
             keys.Add("new_field_1303", 65);
 
+            Console.WriteLine("[Stream] Starting new stream");
+
         }
 
         public void Stop()
         {
-            Console.WriteLine("Off");
+            Console.WriteLine("[Stream] Stream turned off");
             this.Running = false;
         }
 
@@ -146,7 +148,7 @@ namespace RLCTelemetry.Stream.UDP
             this.session = session;
             this.Running = true;
 
-            Console.WriteLine("Running");
+            Console.WriteLine("[Stream] Stream is running");
 
             UdpClient listener = new UdpClient(this.listenPort);
             IPEndPoint groupEP = new IPEndPoint(this.ipAddress, this.listenPort);
@@ -224,7 +226,7 @@ namespace RLCTelemetry.Stream.UDP
 
                             // Bit of console logging.
                             this.Sector(3, this.sector3);
-                            Console.WriteLine("Previous lap: " + stream[62]);
+                            Console.WriteLine("[Stream] Previous lap: " + stream[62]);
 
                             this.session.UpdateLastLapTime(this.currentlap.LapTimeString);
 
@@ -264,7 +266,7 @@ namespace RLCTelemetry.Stream.UDP
         {
             if (this.sectors[sector - 1] == false)
             {
-                Console.WriteLine("Sector " + sector + ": " + value.ToString());
+                Console.WriteLine("[Stream] Sector " + sector + ": " + value.ToString());
                 this.sectors[sector - 1] = true;
             }
 
