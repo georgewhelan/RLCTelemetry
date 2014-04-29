@@ -81,6 +81,18 @@
     <Compile Include="GUI\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AboutBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AboutBoxForm.Designer.cs">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ApplicationSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ApplicationSettings.Designer.cs">
+      <DependentUpon>ApplicationSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Instructions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +125,12 @@
     <Compile Include="Utilities\TimeFormatter.cs" />
     <EmbeddedResource Include="GUI\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AboutBoxForm.resx">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ApplicationSettings.resx">
+      <DependentUpon>ApplicationSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -160,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Icons\Helmets\32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Banner\AboutBanner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -106,6 +106,8 @@ namespace RLCTelemetry
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AboutBox about = new AboutBox();
+            //AboutBoxForm about = new AboutBoxForm();
+            
             about.Show();
         }
 
@@ -123,6 +125,12 @@ namespace RLCTelemetry
             this.kPHToolStripMenuItem.Checked = true;
             this.speedunits = Speed.KPH;
             this.speedunitslabel.Text = "KPH";
+        }
+
+        private void applicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApplicationSettings settings = new ApplicationSettings();
+            settings.Show();
         }
 
 

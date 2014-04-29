@@ -49,7 +49,13 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.driverhelmetpicture = new System.Windows.Forms.PictureBox();
+            this.welcomelabel = new System.Windows.Forms.Label();
             this.sessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.resetsessionbutton = new System.Windows.Forms.Button();
+            this.savelogbutton = new RLCTelemetry.Controls.UIButton();
+            this.bestlaplabel = new System.Windows.Forms.Label();
+            this.speedunitslabel = new System.Windows.Forms.Label();
             this.streamControlButton = new System.Windows.Forms.Button();
             this.topSpeed = new System.Windows.Forms.Label();
             this.topSpeedLabel = new System.Windows.Forms.Label();
@@ -59,18 +65,12 @@
             this.previousLaps = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusBarStreamingLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.speedunitslabel = new System.Windows.Forms.Label();
-            this.bestlaplabel = new System.Windows.Forms.Label();
-            this.resetsessionbutton = new System.Windows.Forms.Button();
-            this.welcomelabel = new System.Windows.Forms.Label();
-            this.driverhelmetpicture = new System.Windows.Forms.PictureBox();
-            this.savelogbutton = new RLCTelemetry.Controls.UIButton();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.driverhelmetpicture)).BeginInit();
             this.sessionGroupBox.SuspendLayout();
             this.previousLapsGroup.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.driverhelmetpicture)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -130,6 +130,7 @@
             this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
             this.applicationToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.applicationToolStripMenuItem.Text = "Application";
+            this.applicationToolStripMenuItem.Click += new System.EventHandler(this.applicationToolStripMenuItem_Click);
             // 
             // forwardingToolStripMenuItem
             // 
@@ -237,6 +238,26 @@
             this.panel1.Size = new System.Drawing.Size(334, 360);
             this.panel1.TabIndex = 1;
             // 
+            // driverhelmetpicture
+            // 
+            this.driverhelmetpicture.Image = global::RLCTelemetry.Properties.Resources._32x32;
+            this.driverhelmetpicture.InitialImage = global::RLCTelemetry.Properties.Resources._32x32;
+            this.driverhelmetpicture.Location = new System.Drawing.Point(177, 0);
+            this.driverhelmetpicture.Name = "driverhelmetpicture";
+            this.driverhelmetpicture.Size = new System.Drawing.Size(32, 32);
+            this.driverhelmetpicture.TabIndex = 3;
+            this.driverhelmetpicture.TabStop = false;
+            // 
+            // welcomelabel
+            // 
+            this.welcomelabel.AutoSize = true;
+            this.welcomelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomelabel.Location = new System.Drawing.Point(12, 6);
+            this.welcomelabel.Name = "welcomelabel";
+            this.welcomelabel.Size = new System.Drawing.Size(162, 20);
+            this.welcomelabel.TabIndex = 2;
+            this.welcomelabel.Text = "Welcome back, Lordp";
+            // 
             // sessionGroupBox
             // 
             this.sessionGroupBox.Controls.Add(this.resetsessionbutton);
@@ -254,6 +275,42 @@
             this.sessionGroupBox.TabIndex = 1;
             this.sessionGroupBox.TabStop = false;
             this.sessionGroupBox.Text = "Session Statistics";
+            // 
+            // resetsessionbutton
+            // 
+            this.resetsessionbutton.Location = new System.Drawing.Point(178, 84);
+            this.resetsessionbutton.Name = "resetsessionbutton";
+            this.resetsessionbutton.Size = new System.Drawing.Size(75, 23);
+            this.resetsessionbutton.TabIndex = 8;
+            this.resetsessionbutton.Text = "Reset";
+            this.resetsessionbutton.UseVisualStyleBackColor = true;
+            // 
+            // savelogbutton
+            // 
+            this.savelogbutton.Location = new System.Drawing.Point(97, 84);
+            this.savelogbutton.Name = "savelogbutton";
+            this.savelogbutton.Size = new System.Drawing.Size(75, 23);
+            this.savelogbutton.TabIndex = 7;
+            this.savelogbutton.Text = "Save Log";
+            this.savelogbutton.UseVisualStyleBackColor = true;
+            // 
+            // bestlaplabel
+            // 
+            this.bestlaplabel.AutoSize = true;
+            this.bestlaplabel.Location = new System.Drawing.Point(28, 52);
+            this.bestlaplabel.Name = "bestlaplabel";
+            this.bestlaplabel.Size = new System.Drawing.Size(48, 13);
+            this.bestlaplabel.TabIndex = 6;
+            this.bestlaplabel.Text = "Best lap:";
+            // 
+            // speedunitslabel
+            // 
+            this.speedunitslabel.AutoSize = true;
+            this.speedunitslabel.Location = new System.Drawing.Point(186, 37);
+            this.speedunitslabel.Name = "speedunitslabel";
+            this.speedunitslabel.Size = new System.Drawing.Size(31, 13);
+            this.speedunitslabel.TabIndex = 5;
+            this.speedunitslabel.Text = "MPH";
             // 
             // streamControlButton
             // 
@@ -335,64 +392,6 @@
             this.statusBarStreamingLabel.Size = new System.Drawing.Size(83, 17);
             this.statusBarStreamingLabel.Text = "Not streaming";
             // 
-            // speedunitslabel
-            // 
-            this.speedunitslabel.AutoSize = true;
-            this.speedunitslabel.Location = new System.Drawing.Point(186, 37);
-            this.speedunitslabel.Name = "speedunitslabel";
-            this.speedunitslabel.Size = new System.Drawing.Size(31, 13);
-            this.speedunitslabel.TabIndex = 5;
-            this.speedunitslabel.Text = "MPH";
-            // 
-            // bestlaplabel
-            // 
-            this.bestlaplabel.AutoSize = true;
-            this.bestlaplabel.Location = new System.Drawing.Point(28, 52);
-            this.bestlaplabel.Name = "bestlaplabel";
-            this.bestlaplabel.Size = new System.Drawing.Size(48, 13);
-            this.bestlaplabel.TabIndex = 6;
-            this.bestlaplabel.Text = "Best lap:";
-            // 
-            // resetsessionbutton
-            // 
-            this.resetsessionbutton.Location = new System.Drawing.Point(178, 84);
-            this.resetsessionbutton.Name = "resetsessionbutton";
-            this.resetsessionbutton.Size = new System.Drawing.Size(75, 23);
-            this.resetsessionbutton.TabIndex = 8;
-            this.resetsessionbutton.Text = "Reset";
-            this.resetsessionbutton.UseVisualStyleBackColor = true;
-            // 
-            // welcomelabel
-            // 
-            this.welcomelabel.AutoSize = true;
-            this.welcomelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcomelabel.Location = new System.Drawing.Point(12, 10);
-            this.welcomelabel.Name = "welcomelabel";
-            this.welcomelabel.Size = new System.Drawing.Size(162, 20);
-            this.welcomelabel.TabIndex = 2;
-            this.welcomelabel.Text = "Welcome back, Lordp";
-            // 
-            // driverhelmetpicture
-            // 
-
-            // Placeholder image courtesy of: http://timelikeit.deviantart.com/art/Mclaren-F1-iCons-65916463
-            this.driverhelmetpicture.Image = global::RLCTelemetry.Properties.Resources._32x32;
-            this.driverhelmetpicture.InitialImage = global::RLCTelemetry.Properties.Resources._32x32;
-            this.driverhelmetpicture.Location = new System.Drawing.Point(177, 0);
-            this.driverhelmetpicture.Name = "driverhelmetpicture";
-            this.driverhelmetpicture.Size = new System.Drawing.Size(32, 32);
-            this.driverhelmetpicture.TabIndex = 3;
-            this.driverhelmetpicture.TabStop = false;
-            // 
-            // savelogbutton
-            // 
-            this.savelogbutton.Location = new System.Drawing.Point(97, 84);
-            this.savelogbutton.Name = "savelogbutton";
-            this.savelogbutton.Size = new System.Drawing.Size(75, 23);
-            this.savelogbutton.TabIndex = 7;
-            this.savelogbutton.Text = "Save Log";
-            this.savelogbutton.UseVisualStyleBackColor = true;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,12 +410,12 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.driverhelmetpicture)).EndInit();
             this.sessionGroupBox.ResumeLayout(false);
             this.sessionGroupBox.PerformLayout();
             this.previousLapsGroup.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.driverhelmetpicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
