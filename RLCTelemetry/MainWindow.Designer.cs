@@ -116,7 +116,7 @@
             this.websiteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.authenticationToolStripMenuItem});
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.websiteToolStripMenuItem.Text = "Website";
             // 
             // authenticationToolStripMenuItem
@@ -124,18 +124,19 @@
             this.authenticationToolStripMenuItem.Name = "authenticationToolStripMenuItem";
             this.authenticationToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.authenticationToolStripMenuItem.Text = "Authentication";
+            this.authenticationToolStripMenuItem.Click += new System.EventHandler(this.authenticationToolStripMenuItem_Click);
             // 
             // applicationToolStripMenuItem
             // 
             this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
-            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.applicationToolStripMenuItem.Text = "Application";
             this.applicationToolStripMenuItem.Click += new System.EventHandler(this.applicationToolStripMenuItem_Click);
             // 
             // forwardingToolStripMenuItem
             // 
             this.forwardingToolStripMenuItem.Name = "forwardingToolStripMenuItem";
-            this.forwardingToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.forwardingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.forwardingToolStripMenuItem.Text = "Forwarding";
             // 
             // localisationToolStripMenuItem
@@ -144,7 +145,7 @@
             this.mPHToolStripMenuItem,
             this.kPHToolStripMenuItem});
             this.localisationToolStripMenuItem.Name = "localisationToolStripMenuItem";
-            this.localisationToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.localisationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.localisationToolStripMenuItem.Text = "Localisation";
             // 
             // mPHToolStripMenuItem
@@ -242,7 +243,7 @@
             // 
             this.driverhelmetpicture.Image = global::RLCTelemetry.Properties.Resources._32x32;
             this.driverhelmetpicture.InitialImage = global::RLCTelemetry.Properties.Resources._32x32;
-            this.driverhelmetpicture.Location = new System.Drawing.Point(177, 0);
+            this.driverhelmetpicture.Location = new System.Drawing.Point(10, 0);
             this.driverhelmetpicture.Name = "driverhelmetpicture";
             this.driverhelmetpicture.Size = new System.Drawing.Size(32, 32);
             this.driverhelmetpicture.TabIndex = 3;
@@ -252,11 +253,11 @@
             // 
             this.welcomelabel.AutoSize = true;
             this.welcomelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcomelabel.Location = new System.Drawing.Point(12, 6);
+            this.welcomelabel.Location = new System.Drawing.Point(45, 6);
             this.welcomelabel.Name = "welcomelabel";
-            this.welcomelabel.Size = new System.Drawing.Size(162, 20);
+            this.welcomelabel.Size = new System.Drawing.Size(117, 20);
             this.welcomelabel.TabIndex = 2;
-            this.welcomelabel.Text = "Welcome back, Lordp";
+            this.welcomelabel.Text = "Hello new user!";
             // 
             // sessionGroupBox
             // 

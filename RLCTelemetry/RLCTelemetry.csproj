@@ -72,6 +72,9 @@
     <Compile Include="Controls\UIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\UILabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\UITabs.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -92,6 +95,12 @@
     </Compile>
     <Compile Include="GUI\ApplicationSettings.Designer.cs">
       <DependentUpon>ApplicationSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Authentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Authentication.Designer.cs">
+      <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Instructions.cs">
       <SubType>Form</SubType>
@@ -120,6 +129,7 @@
     <Compile Include="Stream\Data\TopSpeed.cs" />
     <Compile Include="Stream\Http\WebsiteStream.cs" />
     <Compile Include="Stream\UDP\UDPStream.cs" />
+    <Compile Include="Utilities\Authentication\Authenticator.cs" />
     <Compile Include="Utilities\Configuration\F12013Config.cs" />
     <Compile Include="Utilities\Factories\LapFactory.cs" />
     <Compile Include="Utilities\TimeFormatter.cs" />
@@ -131,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ApplicationSettings.resx">
       <DependentUpon>ApplicationSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Authentication.resx">
+      <DependentUpon>Authentication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

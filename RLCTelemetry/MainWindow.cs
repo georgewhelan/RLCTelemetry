@@ -13,6 +13,7 @@ using RLCTelemetry.Stream.Data;
 using RLCTelemetry.GUI;
 using RLCTelemetry.Settings.Localisation;
 using RLCTelemetry.Utilities.Configuration;
+using RLCTelemetry.Utilities.Authentication;
 
 namespace RLCTelemetry
 {
@@ -34,15 +35,23 @@ namespace RLCTelemetry
             F12013Config config = new F12013Config();
             config.ReadConfig();
 
+            //Authenticator auth = new Authenticator();
+            
 
-            if (config.Success == true)
-            {
-                this.stream = new UDPStream(config.Server, config.Port, this);
-            }
-            else
-            {
+            //if (auth.ReadKey() == true)
+            //{
+                // key has been found. get drivers with that key.
+            //    List<string> drivers = auth.CheckKey();
+            //}
+
+            //if (config.Success == true)
+            //{
+            //    this.stream = new UDPStream(config.Server, config.Port, this);
+            //}
+            //else
+            //{
                 // Throw an error here, unable to succeed in reading the values from the config file.
-            }
+            //}
         }
 
         private void StreamStart()
@@ -131,6 +140,12 @@ namespace RLCTelemetry
         {
             ApplicationSettings settings = new ApplicationSettings();
             settings.Show();
+        }
+
+        private void authenticationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Authentication auth = new Authentication();
+            auth.Show();
         }
 
 
