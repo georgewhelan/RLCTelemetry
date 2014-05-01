@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace RLCTelemetry.Utilities.Authentication
@@ -12,6 +13,7 @@ namespace RLCTelemetry.Utilities.Authentication
     class Authenticator
     {
         private string key;
+        private MainWindow parent;
 
         public Authenticator()
         {
@@ -35,50 +37,90 @@ namespace RLCTelemetry.Utilities.Authentication
         public List<string> CheckKey(string key)
         {
             List<string> drivers = new List<string>();
-
             return drivers;
-
         }
 
-        public List<string> GetDriverList()
+        private HttpWebRequest webRequest;
+        private XElement driversnode;
+        private System.IO.Stream received;
+        private List<string> driverslist = new List<string>();
+
+        public void StartWebRequest()
         {
             Console.WriteLine("[Auth] Checking key against server");
             
-            List<string> driverslist = new List<string>();
+            this.webRequest.BeginGetResponse(new AsyncCallback(this.FinishWebRequest), null);
+            Console.WriteLine("This should appear straight away after checking key.");
+        }
+
+        public void FinishWebRequest(IAsyncResult result)
+        {
+            Console.WriteLine("[Auth] Response from server received");
+
+            Console.WriteLine(result.CompletedSynchronously);
+
+            //WebResponse response = webRequest.EndGetResponse(result);
+            //Console.WriteLine("Got a response");
 
 
-            var request = (HttpWebRequest)WebRequest.Create("https://racingleaguecharts.com/drivers.xml?token=" + this.key);
-            request.Timeout = 5000; //Timeout after 5 seconds
-            using (var stream = request.GetResponse().GetResponseStream())
-            using (var reader = new StreamReader(stream))
+            //this.received = response.GetResponseStream();
+            //StreamReader readStream = new StreamReader(this.received);
+
+            //Console.WriteLine(readStream.ReadToEnd());
+
+            //this.driversnode = XElement.Parse(readStream.ReadToEnd());
+            //if (driversnode != null)
+            //{
+            //    IEnumerable<XElement> drivers = driversnode.Descendants("drivers");
+            //    foreach (XElement driver in drivers)
+            //    {
+            //        this.driverslist.Add(driver.Value);
+            //    }
+            //}
+            //else
+            //{
+            //    // Server timeout.
+            //    Console.WriteLine("[Auth] No driver list returned");
+            //}
+
+            //if (this.driverslist.Count > 1)
+            //{
+            //    // More than 1 driver found
+            //    this.parent.UpdateDriverLabel(this.driverslist[0].ToString());
+                   
+            //}
+            //else
+            //{
+            //    // No auth token.
+            //    this.parent.UpdateAnonDriverLabel();
+            //}
+
+        }
+
+        public List<string> GetDriverList(MainWindow parent)
+        {
+            //this.parent = parent;
+            //this.webRequest = (HttpWebRequest)WebRequest.Create("https://racingleaguecharts.com/drivers.xml?token=" + this.key);
+            //this.StartWebRequest();
+
+            this.driversnode = XElement.Load("https://racingleaguecharts.com/drivers.xml?token=" + this.key);
+            if (driversnode != null)
             {
-
-                XElement driversnode = XElement.Load("https://racingleaguecharts.com/drivers.xml?token=" + this.key);
-
-                if (driversnode != null)
+                IEnumerable<XElement> drivers = driversnode.Descendants("drivers");
+                foreach (XElement driver in drivers)
                 {
-                    Console.WriteLine("[Auth] Response from server received");
-
-                    IEnumerable<XElement> drivers = driversnode.Descendants("drivers");
-                    foreach (XElement driver in drivers)
-                    {
-                        driverslist.Add(driver.Value);
-                    }
-
-                    
-
+                    this.driverslist.Add(driver.Value);
                 }
-                else
-                {
-                    Console.WriteLine("[Auth] No driver list returned");
-                    // Incorrect token or no assigned drivers.
-                }
-
             }
-            
+            else
+            {
+                // Server timeout.
+                Console.WriteLine("[Auth] No driver list returned");
+            }
 
-            // Maybe not return the actual list here, it can totally be null if it times out.
-            return driverslist;
+            return this.driverslist;
+
+
 
         }
 

@@ -53,7 +53,6 @@
             this.driverWelcomeLabel = new System.Windows.Forms.Label();
             this.sessionGroupBox = new System.Windows.Forms.GroupBox();
             this.resetsessionbutton = new System.Windows.Forms.Button();
-            this.savelogbutton = new RLCTelemetry.Controls.UIButton();
             this.bestlaplabel = new System.Windows.Forms.Label();
             this.speedunitslabel = new System.Windows.Forms.Label();
             this.streamControlButton = new System.Windows.Forms.Button();
@@ -65,6 +64,7 @@
             this.previousLaps = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusBarStreamingLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.savelogbutton = new RLCTelemetry.Controls.UIButton();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.driverhelmetpicture)).BeginInit();
@@ -255,9 +255,9 @@
             this.driverWelcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.driverWelcomeLabel.Location = new System.Drawing.Point(45, 6);
             this.driverWelcomeLabel.Name = "driverWelcomeLabel";
-            this.driverWelcomeLabel.Size = new System.Drawing.Size(117, 20);
+            this.driverWelcomeLabel.Size = new System.Drawing.Size(78, 20);
             this.driverWelcomeLabel.TabIndex = 2;
-            this.driverWelcomeLabel.Text = "Hello new user!";
+            this.driverWelcomeLabel.Text = "Loading...";
             // 
             // sessionGroupBox
             // 
@@ -285,15 +285,6 @@
             this.resetsessionbutton.TabIndex = 8;
             this.resetsessionbutton.Text = "Reset";
             this.resetsessionbutton.UseVisualStyleBackColor = true;
-            // 
-            // savelogbutton
-            // 
-            this.savelogbutton.Location = new System.Drawing.Point(97, 84);
-            this.savelogbutton.Name = "savelogbutton";
-            this.savelogbutton.Size = new System.Drawing.Size(75, 23);
-            this.savelogbutton.TabIndex = 7;
-            this.savelogbutton.Text = "Save Log";
-            this.savelogbutton.UseVisualStyleBackColor = true;
             // 
             // bestlaplabel
             // 
@@ -392,6 +383,15 @@
             this.statusBarStreamingLabel.Name = "statusBarStreamingLabel";
             this.statusBarStreamingLabel.Size = new System.Drawing.Size(83, 17);
             this.statusBarStreamingLabel.Text = "Not streaming";
+            // 
+            // savelogbutton
+            // 
+            this.savelogbutton.Location = new System.Drawing.Point(97, 84);
+            this.savelogbutton.Name = "savelogbutton";
+            this.savelogbutton.Size = new System.Drawing.Size(75, 23);
+            this.savelogbutton.TabIndex = 7;
+            this.savelogbutton.Text = "Save Log";
+            this.savelogbutton.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 

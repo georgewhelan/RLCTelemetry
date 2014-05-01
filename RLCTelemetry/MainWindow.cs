@@ -25,35 +25,69 @@ namespace RLCTelemetry
         // The localisation for speed units.
         private Speed speedunits = Speed.MPH;
         public Speed SpeedUnits { get { return this.speedunits; } }
-        
+
+        public List<string> Drivers;
+        private List<string> drivers;
+
+        private LoadingForm loading = new LoadingForm();
+
         public MainWindow()
         {
             InitializeComponent();
-            Console.WriteLine("[GUI] Showing main window");
-            this.Show();
 
+            this.Load += MainWindow_Load;
+
+            
+
+            // Show loading form rather than main GUI.
+            
+            Console.WriteLine("[GUI] Showing loading form");
+            this.loading.Show();
+            // Force the application to render the loading form.
+            Application.DoEvents();
+        }
+
+        public void UpdateDriverLabel(string name)
+        {
+            this.driverWelcomeLabel.Text = "Welcome back, " + name;
+        }
+
+        public void UpdateAnonDriverLabel()
+        {
+            this.driverWelcomeLabel.Text = "Hello new user, please link your account";
+            this.streamControlButton.Enabled = false;
+            this.resetsessionbutton.Enabled = false;
+            this.savelogbutton.Enabled = false;
+        }
+
+        void MainWindow_Load(object sender, EventArgs e)
+        {
             F12013Config config = new F12013Config();
             config.ReadConfig();
 
-            
             Authenticator auth = new Authenticator();
 
             // New thread needed, or a loading screen.
             if (auth.ReadKey() == true)
             {
                 // key has been found. get drivers with that key.
-                List<string> drivers = auth.GetDriverList();
-                if (drivers.Count > 1)
+                this.drivers = auth.GetDriverList(this);
+
+                if (this.drivers.Count >= 1)
                 {
                     // More than 1 driver found
-                    // Not sure how to handle this yet. Let me think about it.
-                    this.driverWelcomeLabel.Text = "Welcome back, " + drivers[0].ToString();
+                    this.UpdateDriverLabel(this.drivers[0].ToString());
+
                 }
                 else
                 {
-                    // safe to update driver name.
-                    this.driverWelcomeLabel.Text = "Welcome back, " + drivers[0].ToString();
+                    // No auth token.
+                    this.UpdateAnonDriverLabel();
                 }
+            }
+            else
+            {
+                // Failed to read auth key.
             }
 
             if (config.Success == true)
@@ -64,6 +98,11 @@ namespace RLCTelemetry
             {
                 // Throw an error here, unable to succeed in reading the values from the config file.
             }
+
+            Console.WriteLine("[GUI] Showing main window");
+            this.loading.Hide();
+            this.Show();
+
         }
 
         private void StreamStart()
@@ -128,7 +167,6 @@ namespace RLCTelemetry
         {
             AboutBox about = new AboutBox();
             //AboutBoxForm about = new AboutBoxForm();
-            
             about.Show();
         }
 
