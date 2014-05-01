@@ -31,19 +31,19 @@ namespace RLCTelemetry.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.authenticationLabel = new Label();
+            this.websiteTokenRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.authenticationLabel = new System.Windows.Forms.Label();
             this.authCancelButton = new RLCTelemetry.Controls.UIButton();
             this.authSaveButton = new RLCTelemetry.Controls.UIButton();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // websiteTokenRichTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 34);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(260, 109);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.websiteTokenRichTextBox.Location = new System.Drawing.Point(12, 34);
+            this.websiteTokenRichTextBox.Name = "websiteTokenRichTextBox";
+            this.websiteTokenRichTextBox.Size = new System.Drawing.Size(260, 109);
+            this.websiteTokenRichTextBox.TabIndex = 0;
+            this.websiteTokenRichTextBox.Text = "";
             // 
             // authenticationLabel
             // 
@@ -82,7 +82,7 @@ namespace RLCTelemetry.GUI
             this.Controls.Add(this.authenticationLabel);
             this.Controls.Add(this.authCancelButton);
             this.Controls.Add(this.authSaveButton);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.websiteTokenRichTextBox);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Authentication";
@@ -96,7 +96,7 @@ namespace RLCTelemetry.GUI
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox websiteTokenRichTextBox;
         private Controls.UIButton authSaveButton;
         private Controls.UIButton authCancelButton;
         private Label authenticationLabel;

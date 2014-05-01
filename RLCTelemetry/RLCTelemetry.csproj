@@ -128,6 +128,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rlc.cs" />
+    <Compile Include="rlc.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>rlc.settings</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Settings\Localisation\Localisation.cs" />
     <Compile Include="Settings\Localisation\Speed.cs" />
     <Compile Include="Stream\Data\Lap.cs" />
@@ -177,6 +184,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="rlc.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>rlc.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

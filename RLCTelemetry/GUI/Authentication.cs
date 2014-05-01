@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RLCTelemetry.Utilities.Authentication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,17 @@ namespace RLCTelemetry.GUI
 {
     public partial class Authentication : Form
     {
-        public Authentication()
+        private MainWindow parent;
+
+        public Authentication(MainWindow parent)
         {
             InitializeComponent();
+            this.parent = parent;
             Console.WriteLine("[GUI] Showing authentication settings");
+
+            Authenticator auth = new Authenticator();
+            auth.ReadKey();
+            this.websiteTokenRichTextBox.Text = auth.Key;
         }
 
         private void authCancelButton_Click(object sender, EventArgs e)
@@ -26,7 +34,9 @@ namespace RLCTelemetry.GUI
 
         private void authSaveButton_Click(object sender, EventArgs e)
         {
-            // Update settings file with the auth code. Hardcoded for the time being.
+            Authenticator auth = new Authenticator();
+            auth.WriteKey(this.websiteTokenRichTextBox.Text, this.parent);
+            this.Close();
         }
     }
 }

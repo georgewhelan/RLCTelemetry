@@ -37,10 +37,7 @@ namespace RLCTelemetry
 
             this.Load += MainWindow_Load;
 
-            
-
             // Show loading form rather than main GUI.
-            
             Console.WriteLine("[GUI] Showing loading form");
             this.loading.Show();
             // Force the application to render the loading form.
@@ -50,6 +47,9 @@ namespace RLCTelemetry
         public void UpdateDriverLabel(string name)
         {
             this.driverWelcomeLabel.Text = "Welcome back, " + name;
+            this.streamControlButton.Enabled = true;
+            this.resetsessionbutton.Enabled = true;
+            this.savelogbutton.Enabled = true;
         }
 
         public void UpdateAnonDriverLabel()
@@ -58,6 +58,11 @@ namespace RLCTelemetry
             this.streamControlButton.Enabled = false;
             this.resetsessionbutton.Enabled = false;
             this.savelogbutton.Enabled = false;
+        }
+
+        public string GetDriverName()
+        {
+            return "";
         }
 
         void MainWindow_Load(object sender, EventArgs e)
@@ -71,13 +76,11 @@ namespace RLCTelemetry
             if (auth.ReadKey() == true)
             {
                 // key has been found. get drivers with that key.
-                this.drivers = auth.GetDriverList(this);
+                this.drivers = auth.GetDriverList();
 
-                if (this.drivers.Count >= 1)
+                if (this.drivers[0].ToString() != "")
                 {
-                    // More than 1 driver found
                     this.UpdateDriverLabel(this.drivers[0].ToString());
-
                 }
                 else
                 {
@@ -194,7 +197,7 @@ namespace RLCTelemetry
 
         private void authenticationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Authentication auth = new Authentication();
+            Authentication auth = new Authentication(this);
             auth.Show();
         }
 

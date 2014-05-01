@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -12,26 +13,66 @@ namespace RLCTelemetry.Utilities.Authentication
 {
     class Authenticator
     {
+        public string Key
+        {
+            get { return this.key; }
+        }
         private string key;
-        private MainWindow parent;
+        private string settingsPath;
 
         public Authenticator()
         {
-            // Hard coded a key in place for the time being. 
-            this.key = "6e30879454462d1688dfe7fca98a36960ca2d418dbd9a7db87efad64d1898b94";
         }
 
         public bool ReadKey()
         {
             // Loads the key out of config file.
             Console.WriteLine("[Auth] Reading auth token");
-            return true;
+            this.settingsPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\rlc.settings";
+
+            XmlDocument settingsFile = new XmlDocument();
+            settingsFile.Load(this.settingsPath);
+
+            XmlNodeList nodes = settingsFile.GetElementsByTagName("Setting");
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                if (nodes[i].Attributes["Name"].Value == "token")
+                {
+                    // Found the right setting. Continue.
+                    this.key = nodes[i].FirstChild.InnerText;
+                    Console.WriteLine("[Auth] Saved token to memory");
+                    return true;
+                }
+            }
+
+            Console.WriteLine("[Auth] No token found");
+            return false;
         }
 
-        public void WriteKey(string newkey)
+        public void WriteKey(string newkey, MainWindow parent)
         {
             Console.WriteLine("[Auth] Saving new auth token");
+
+            this.settingsPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\rlc.settings";
+
+            XmlDocument settingsFile = new XmlDocument();
+            settingsFile.Load(this.settingsPath);
+
+            XmlNodeList nodes = settingsFile.GetElementsByTagName("Setting");
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                if (nodes[i].Attributes["Name"].Value == "token")
+                {
+                    // Found the right setting. Continue.
+                    nodes[i].FirstChild.InnerText = newkey;
+                }
+            }
+
+            settingsFile.Save(this.settingsPath);
+            Console.WriteLine("[Auth] Saved new token");
             // Writes the new key to the config file.
+            // Needs to then this.GetDriverList();
+
         }
 
         public List<string> CheckKey(string key)
@@ -97,9 +138,8 @@ namespace RLCTelemetry.Utilities.Authentication
 
         }
 
-        public List<string> GetDriverList(MainWindow parent)
+        public List<string> GetDriverList()
         {
-            //this.parent = parent;
             //this.webRequest = (HttpWebRequest)WebRequest.Create("https://racingleaguecharts.com/drivers.xml?token=" + this.key);
             //this.StartWebRequest();
 
