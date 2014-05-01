@@ -35,23 +35,35 @@ namespace RLCTelemetry
             F12013Config config = new F12013Config();
             config.ReadConfig();
 
-            //Authenticator auth = new Authenticator();
             
+            Authenticator auth = new Authenticator();
 
-            //if (auth.ReadKey() == true)
-            //{
+            // New thread needed, or a loading screen.
+            if (auth.ReadKey() == true)
+            {
                 // key has been found. get drivers with that key.
-            //    List<string> drivers = auth.CheckKey();
-            //}
+                List<string> drivers = auth.GetDriverList();
+                if (drivers.Count > 1)
+                {
+                    // More than 1 driver found
+                    // Not sure how to handle this yet. Let me think about it.
+                    this.driverWelcomeLabel.Text = "Welcome back, " + drivers[0].ToString();
+                }
+                else
+                {
+                    // safe to update driver name.
+                    this.driverWelcomeLabel.Text = "Welcome back, " + drivers[0].ToString();
+                }
+            }
 
-            //if (config.Success == true)
-            //{
-            //    this.stream = new UDPStream(config.Server, config.Port, this);
-            //}
-            //else
-            //{
+            if (config.Success == true)
+            {
+                this.stream = new UDPStream(config.Server, config.Port, this);
+            }
+            else
+            {
                 // Throw an error here, unable to succeed in reading the values from the config file.
-            //}
+            }
         }
 
         private void StreamStart()

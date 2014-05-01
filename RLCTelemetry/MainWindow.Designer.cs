@@ -50,7 +50,7 @@
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.driverhelmetpicture = new System.Windows.Forms.PictureBox();
-            this.welcomelabel = new System.Windows.Forms.Label();
+            this.driverWelcomeLabel = new System.Windows.Forms.Label();
             this.sessionGroupBox = new System.Windows.Forms.GroupBox();
             this.resetsessionbutton = new System.Windows.Forms.Button();
             this.savelogbutton = new RLCTelemetry.Controls.UIButton();
@@ -116,7 +116,7 @@
             this.websiteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.authenticationToolStripMenuItem});
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.websiteToolStripMenuItem.Text = "Website";
             // 
             // authenticationToolStripMenuItem
@@ -129,14 +129,14 @@
             // applicationToolStripMenuItem
             // 
             this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
-            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.applicationToolStripMenuItem.Text = "Application";
             this.applicationToolStripMenuItem.Click += new System.EventHandler(this.applicationToolStripMenuItem_Click);
             // 
             // forwardingToolStripMenuItem
             // 
             this.forwardingToolStripMenuItem.Name = "forwardingToolStripMenuItem";
-            this.forwardingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.forwardingToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.forwardingToolStripMenuItem.Text = "Forwarding";
             // 
             // localisationToolStripMenuItem
@@ -145,7 +145,7 @@
             this.mPHToolStripMenuItem,
             this.kPHToolStripMenuItem});
             this.localisationToolStripMenuItem.Name = "localisationToolStripMenuItem";
-            this.localisationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.localisationToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.localisationToolStripMenuItem.Text = "Localisation";
             // 
             // mPHToolStripMenuItem
@@ -231,7 +231,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.driverhelmetpicture);
-            this.panel1.Controls.Add(this.welcomelabel);
+            this.panel1.Controls.Add(this.driverWelcomeLabel);
             this.panel1.Controls.Add(this.sessionGroupBox);
             this.panel1.Controls.Add(this.previousLapsGroup);
             this.panel1.Location = new System.Drawing.Point(0, 27);
@@ -249,15 +249,15 @@
             this.driverhelmetpicture.TabIndex = 3;
             this.driverhelmetpicture.TabStop = false;
             // 
-            // welcomelabel
+            // driverWelcomeLabel
             // 
-            this.welcomelabel.AutoSize = true;
-            this.welcomelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcomelabel.Location = new System.Drawing.Point(45, 6);
-            this.welcomelabel.Name = "welcomelabel";
-            this.welcomelabel.Size = new System.Drawing.Size(117, 20);
-            this.welcomelabel.TabIndex = 2;
-            this.welcomelabel.Text = "Hello new user!";
+            this.driverWelcomeLabel.AutoSize = true;
+            this.driverWelcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.driverWelcomeLabel.Location = new System.Drawing.Point(45, 6);
+            this.driverWelcomeLabel.Name = "driverWelcomeLabel";
+            this.driverWelcomeLabel.Size = new System.Drawing.Size(117, 20);
+            this.driverWelcomeLabel.TabIndex = 2;
+            this.driverWelcomeLabel.Text = "Hello new user!";
             // 
             // sessionGroupBox
             // 
@@ -458,7 +458,7 @@
         private System.Windows.Forms.Label speedunitslabel;
         private Controls.UIButton savelogbutton;
         private System.Windows.Forms.Label bestlaplabel;
-        private System.Windows.Forms.Label welcomelabel;
+        private System.Windows.Forms.Label driverWelcomeLabel;
         private System.Windows.Forms.Button resetsessionbutton;
         private System.Windows.Forms.PictureBox driverhelmetpicture;
     }
