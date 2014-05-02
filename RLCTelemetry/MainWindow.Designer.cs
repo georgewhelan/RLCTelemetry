@@ -285,6 +285,7 @@
             this.resetsessionbutton.TabIndex = 8;
             this.resetsessionbutton.Text = "Reset";
             this.resetsessionbutton.UseVisualStyleBackColor = true;
+            this.resetsessionbutton.Enabled = false;
             // 
             // bestlaplabel
             // 
@@ -313,6 +314,7 @@
             this.streamControlButton.Text = "Start";
             this.streamControlButton.UseVisualStyleBackColor = true;
             this.streamControlButton.Click += new System.EventHandler(this.streamControlButton_Click);
+            this.streamControlButton.Enabled = false;
             // 
             // topSpeed
             // 
@@ -392,6 +394,7 @@
             this.savelogbutton.TabIndex = 7;
             this.savelogbutton.Text = "Save Log";
             this.savelogbutton.UseVisualStyleBackColor = true;
+            this.savelogbutton.Enabled = false;
             // 
             // MainWindow
             // 

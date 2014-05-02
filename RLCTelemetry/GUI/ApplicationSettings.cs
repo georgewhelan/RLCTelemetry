@@ -13,7 +13,7 @@ namespace RLCTelemetry.GUI
 {
     public partial class ApplicationSettings : Form
     {
-        private F12013Config2 config;
+        private F12013Config2 config = new F12013Config2();
 
         public ApplicationSettings()
         {
