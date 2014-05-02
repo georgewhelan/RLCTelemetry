@@ -257,7 +257,7 @@
             this.driverWelcomeLabel.Name = "driverWelcomeLabel";
             this.driverWelcomeLabel.Size = new System.Drawing.Size(78, 20);
             this.driverWelcomeLabel.TabIndex = 2;
-            this.driverWelcomeLabel.Text = "Loading...";
+            this.driverWelcomeLabel.Text = "Hello new user, please link your account";
             // 
             // sessionGroupBox
             // 

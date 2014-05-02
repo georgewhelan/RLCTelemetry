@@ -77,16 +77,19 @@ namespace RLCTelemetry
             if (auth.ReadKey() == true)
             {
                 // key has been found. get drivers with that key.
-                this.drivers = auth.GetDriverList();
+                if (auth.Key != "")
+                {
+                    this.drivers = auth.GetDriverList();
 
-                if (this.drivers[0].ToString() != "")
-                {
-                    this.UpdateDriverLabel(this.drivers[0].ToString());
-                }
-                else
-                {
-                    // No auth token.
-                    this.UpdateAnonDriverLabel();
+                    if (this.drivers[0].ToString() != "")
+                    {
+                        this.UpdateDriverLabel(this.drivers[0].ToString());
+                    }
+                    else
+                    {
+                        // No driver name returned.
+                        //this.UpdateAnonDriverLabel();
+                    }
                 }
             }
             else
