@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace RLCTelemetry.Utilities.Configuration
@@ -24,7 +25,7 @@ namespace RLCTelemetry.Utilities.Configuration
             {
                 // Hardcoded to localhost. It should always be that, in reality we shouldn't be letting the server be changed.
                 return new IPAddress((new byte[] { 127, 0, 0, 1 }));
-            } 
+            }
         }
 
         private int port = 0;
@@ -47,58 +48,60 @@ namespace RLCTelemetry.Utilities.Configuration
             }
         }
 
-        public void ReadConfig()
-        {
-            Console.WriteLine("[config] Checking config file");
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\My Games\FormulaOne2013\hardwaresettings\hardware_settings_config.xml";
+        //public void ReadConfig()
+        //{
+        //    Console.WriteLine("[config] Checking config file");
+        //    string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\My Games\FormulaOne2013\hardwaresettings\hardware_settings_config.xml";
 
-            XElement allData = XElement.Load(path);
-            if (allData != null)
-            {
-                IEnumerable<XElement> tasks = allData.Descendants("motion");
-                foreach (XElement task in tasks)
-                {
-                    this.data       = task.Attribute("extradata").Value;
-                    this.server     = task.Attribute("ip").Value;
-                    this.enabled    = task.Attribute("enabled").Value;
-                    int.TryParse(task.Attribute("port").Value, out this.port);
-                }
+        //    XmlDocument allData = new XmlDocument();
+        //    allData.Load(path);
 
-                // Awful nested ifs... if you stick this on /r/shittyprogramming I hope you get lots of internet points.
+        //    if (allData != null)
+        //    {
+        //        IEnumerable<XElement> tasks = allData.Descendants("motion");
+        //        foreach (XElement task in tasks)
+        //        {
+        //            this.data       = task.Attribute("extradata").Value;
+        //            this.server     = task.Attribute("ip").Value;
+        //            this.enabled    = task.Attribute("enabled").Value;
+        //            int.TryParse(task.Attribute("port").Value, out this.port);
+        //        }
 
-                if (this.Enabled == true)
-                    // The motion is actually enabled.
-                {
-                    if (this.data == "3")
-                        // Extra data enabled.
-                    {
-                        if (this.server != null && this.port != 0)
-                            // We have a server and a port to work with.
-                        {
-                            this.Success = true;
-                            Console.WriteLine("[config] Config is fine to stream");
-                        }
-                    }
-                    else
-                    {
-                        // Make the extra data attribute 3.
-                        Console.WriteLine("[config] Changing extra data value to 3");
-                        this.Edit("extradata", "3");
-                        this.ReadConfig();
-                    }
-                }
-                else
-                {
-                    // Config needs motion enabling.
-                    Console.WriteLine("[config] Changing motion value to true");
-                    this.Edit("motion", "true");
+        //        // Awful nested ifs... if you stick this on /r/shittyprogramming I hope you get lots of internet points.
 
-                    // This might end up stuck in an endless loop if it can't write the file.
-                    this.ReadConfig();
-                }
+        //        if (this.Enabled == true)
+        //            // The motion is actually enabled.
+        //        {
+        //            if (this.data == "3")
+        //                // Extra data enabled.
+        //            {
+        //                if (this.server != null && this.port != 0)
+        //                    // We have a server and a port to work with.
+        //                {
+        //                    this.Success = true;
+        //                    Console.WriteLine("[config] Config is fine to stream");
+        //                }
+        //            }
+        //            else
+        //            {
+        //                // Make the extra data attribute 3.
+        //                Console.WriteLine("[config] Changing extra data value to 3");
+        //                this.Edit("extradata", "3");
+        //                this.ReadConfig();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Config needs motion enabling.
+        //            Console.WriteLine("[config] Changing motion value to true");
+        //            this.Edit("motion", "true");
 
-            }
-        }
+        //            // This might end up stuck in an endless loop if it can't write the file.
+        //            this.ReadConfig();
+        //        }
+
+        //    }
+        //}
 
         public void ReadConfig(string filepath)
         {

@@ -13,7 +13,7 @@ namespace RLCTelemetry.GUI
 {
     public partial class ApplicationSettings : Form
     {
-        private F12013Config config = new F12013Config();
+        private F12013Config2 config = new F12013Config2();
 
         public ApplicationSettings()
         {
@@ -35,7 +35,7 @@ namespace RLCTelemetry.GUI
             // Reset config to 127.0.0.1 and 20777
             if (this.config.Port != 20777)
             {
-                config.Edit("port", "20777");
+                config.EditPort(20777);
                 this.currentPortTextbox.Text = "20777";
                 Console.WriteLine("[Config] Resetting config to default");
             }
@@ -51,7 +51,7 @@ namespace RLCTelemetry.GUI
             if (port > 0 && port <= 65000)
             {
                 Console.WriteLine("[Config] Saving config to user values");
-                config.Edit("port", port.ToString());
+                config.EditPort(port);
                 this.currentPortTextbox.Text = port.ToString();
                 this.portErrorLabel.Text = "";
                 this.Close();

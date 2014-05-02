@@ -46,6 +46,7 @@ namespace RLCTelemetry
 
         public void UpdateDriverLabel(string name)
         {
+            // This needs to actually recheck the auth token.
             this.driverWelcomeLabel.Text = "Welcome back, " + name;
             this.streamControlButton.Enabled = true;
             this.resetsessionbutton.Enabled = true;
@@ -67,7 +68,7 @@ namespace RLCTelemetry
 
         void MainWindow_Load(object sender, EventArgs e)
         {
-            F12013Config config = new F12013Config();
+            F12013Config2 config = new F12013Config2();
             config.ReadConfig();
 
             Authenticator auth = new Authenticator();
@@ -93,13 +94,13 @@ namespace RLCTelemetry
                 // Failed to read auth key.
             }
 
-            if (config.Success == true)
+            if (config.Safe == true)
             {
                 this.stream = new UDPStream(config.Server, config.Port, this);
             }
             else
             {
-                // Throw an error here, unable to succeed in reading the values from the config file.
+                // Unable to succeed in reading the values from the config file.
             }
 
             Console.WriteLine("[GUI] Showing main window");

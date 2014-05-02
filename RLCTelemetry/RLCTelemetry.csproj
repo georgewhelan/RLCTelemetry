@@ -144,6 +144,7 @@
     <Compile Include="Stream\UDP\UDPStream.cs" />
     <Compile Include="Utilities\Authentication\Authenticator.cs" />
     <Compile Include="Utilities\Configuration\F12013Config.cs" />
+    <Compile Include="Utilities\Configuration\F12013Config2.cs" />
     <Compile Include="Utilities\Factories\LapFactory.cs" />
     <Compile Include="Utilities\TimeFormatter.cs" />
     <EmbeddedResource Include="GUI\AboutBox.resx">
