@@ -1,6 +1,6 @@
 ﻿namespace RLCTelemetry.Settings.Localisation
 {
-    class Localisation
+    public static class Localisation
     {
         // This class converts base units into the user's chosen units.
 
