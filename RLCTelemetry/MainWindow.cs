@@ -14,6 +14,7 @@ using RLCTelemetry.GUI;
 using RLCTelemetry.Settings.Localisation;
 using RLCTelemetry.Utilities.Configuration;
 using RLCTelemetry.Utilities.Authentication;
+using RLCTelemetry.Stream.Http;
 
 namespace RLCTelemetry
 {
@@ -57,16 +58,11 @@ namespace RLCTelemetry
         {
             this.driverWelcomeLabel.Text = "Hello new user, please link your account";
             this.streamControlButton.Enabled = false;
-            this.resetsessionbutton.Enabled = false;
+            this.resetsessionbutton.Enabled = true;
             this.savelogbutton.Enabled = false;
         }
 
-        public string GetDriverName()
-        {
-            return "";
-        }
-
-        void MainWindow_Load(object sender, EventArgs e)
+        public void MainWindow_Load(object sender, EventArgs e)
         {
             F12013Config2 config = new F12013Config2();
             config.ReadConfig();
@@ -114,10 +110,12 @@ namespace RLCTelemetry
 
         private void StreamStart()
         {
+            // Everything here needs to come from the reset button.
+
             // When start is pushed, we get a new session.
-            Session session = new Session(this);
+            //Session session = new Session(this);
             // Not sure why, having the data start here it means we can close the app before starting streaming.
-            this.stream.Start(session);
+            //this.stream.Start(session);
             
         }
 
@@ -203,6 +201,19 @@ namespace RLCTelemetry
         {
             Authentication auth = new Authentication(this);
             auth.Show();
+        }
+
+        private void resetsessionbutton_Click(object sender, EventArgs e)
+        {
+            // Just using this button right now cos it isn't used. All of this needs to go into the Start button.
+            // TODO: wire this up.
+            WebsiteStream stream = new WebsiteStream();
+            int sessionid = stream.NewSession("CarltonLassiter", "4651.133", "177.0", "73", "e5ada1899f82b80bd0a34b8f113f10dfd2afbefb85e8fd884afa31b2a3975497");
+
+            Session session = new Session(this, sessionid);
+            this.stream.Start(session);
+
+            Console.WriteLine(sessionid);
         }
 
 
