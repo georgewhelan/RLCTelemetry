@@ -63,8 +63,8 @@ namespace RLCTelemetry.Utilities.Authentication
             {
                 if (nodes[i].Attributes["Name"].Value == "token")
                 {
-                    // Found the right setting. Continue.
-                    nodes[i].FirstChild.InnerText = newkey;
+                    // Found the right node. Continue.
+                    nodes[i].FirstChild.InnerXml = newkey;
                 }
             }
 
