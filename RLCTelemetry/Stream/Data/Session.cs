@@ -11,36 +11,37 @@ namespace RLCTelemetry.Stream.Data
     using RLCTelemetry.Stream.UDP;
     using RLCTelemetry.Utilities;
     using RLCTelemetry.Settings.Localisation;
+    using WebAPI;
+    using RLCTelemetry.Stream.Http;
     
 
     public class Session
     {
         // Session ID
-        public int ID;
+        private int id;
+        public int ID
+        {
+            get { return this.id; }
+        }
 
         // List of laps in this session.
         private List<Lap> laps = new List<Lap>();
 
-        // Current position NOT SURE ABOUT THIS.
-        public int Position;
-
         // The current lap in this session.
         public Lap CurrentLap = new Lap();
 
-        // The previous lap, this gets added to the list of laps.
-        //public Lap PreviousLap = new Lap();
-
-        // The session Top Speed.
+        // The session Top Speed. Do not use this for laps.
         private TopSpeed topspeed = new TopSpeed();
-        
         public int TopSpeed { get { return this.topspeed.ToInt(); } }
 
+        // The parent.
         private MainWindow parent;
 
-        public Session(MainWindow parent)
+        public Session(MainWindow parent, int sessionid)
         {
             this.parent = parent;
-            Console.WriteLine("[Session] Starting new session");
+            this.id = sessionid;
+            //Console.WriteLine("[Session] Starting new session");
         }
 
         public void UpdateTopSpeed(float speed, int lap)
@@ -60,7 +61,10 @@ namespace RLCTelemetry.Stream.Data
             // I think it should be looping through this.laps and updating that way, not sure tbh.
             this.laps.Add(lap);
 
+            //this.stream.SubmitLap(lap, this.id);
+
             this.updatelaps(lap);
+            
         }
 
         public void UpdateLastLapTime(float time)
@@ -98,7 +102,7 @@ namespace RLCTelemetry.Stream.Data
             float sec1 = lap.Sector1;
             float sec2 = lap.Sector2;
             float sec3 = lap.Sector3;
-            string time = lap.LapTimeString;
+            string time = lap.ToString();
 
             string result = "Lap " + num + ": Time:" + time;
 
