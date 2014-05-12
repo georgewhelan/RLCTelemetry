@@ -217,6 +217,12 @@
   <ItemGroup>
     <None Include="Images\Banner\AboutBanner.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Class Libraries\WebAPI\WebAPI\WebAPI.csproj">
+      <Project>{e43d4b94-0595-4bb9-98a0-5df91b81ff44}</Project>
+      <Name>WebAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
