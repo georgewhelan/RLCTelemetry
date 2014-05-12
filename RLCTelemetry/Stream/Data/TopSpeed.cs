@@ -28,19 +28,22 @@ namespace RLCTelemetry.Stream.Data
             {
                 this.speed = newspeed;
                 this.lap = lap;
-                Console.WriteLine("Top speed updated");
             }
         }
 
         public int ToInt()
         {
-            // So hacky.
             return (int)this.speed;
         }
 
         public override string ToString()
         {
             return this.speed.ToString();
+        }
+
+        internal float ToFloat()
+        {
+            return this.speed;
         }
     }
 }
